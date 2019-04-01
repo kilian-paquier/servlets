@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Dépôt:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Dépôt_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Dépôt/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Dépôt" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Hibernate 5.4.1-5.4.1" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.13" />
+          <element id="library" level="project" name="javax.servlet:javax.servlet-api:4.0.1" />
+          <element id="library" level="project" name="junit:junit:4.12" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
