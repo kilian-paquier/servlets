@@ -15,7 +15,7 @@
 
 </head>
 
-<%@include file="nav.jsp"%>
+<%@ include file="nav.jsp" %>
 <body>
 <div class="container border border-light rounded pt-5 mt-5 mb-5 pb-5">
     <div class="heading text-center pt-4">
@@ -62,7 +62,7 @@
     </form>
     <div class="text-center mt-2 pb-3">
         <p>Pas encore inscrit ?
-            <a href="register.jsp">S'enregistrer</a>
+            <a href="register">S'enregistrer</a>
         </p>
     </div>
 </div>
@@ -99,5 +99,5 @@
     </div>
 </div>
 
-<%@include file="footer.jsp"%>
+<%@include file="footer.jsp" %>
 </html>

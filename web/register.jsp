@@ -81,7 +81,7 @@
     </form>
     <div class="text-center mt-2 pb-3">
         <p>Déjà inscrit ?
-            <a href="login.jsp">Se connecter</a>
+            <a href="login">Se connecter</a>
         </p>
     </div>
 </div>

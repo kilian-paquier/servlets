@@ -19,12 +19,27 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.jsp">Page d'accueil</a>
+                    <a class="nav-link" href="index">Liste des candidats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="candidats">Ajout/Modification candidats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="partis">Ajout/Modification partis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="votants">Ajout/Modification votants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vote">Voter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resultats">Résultats</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Connexion</a>
+                    <a class="nav-link" href="login">Connexion</a>
                 </li>
             </ul>
         </div>
