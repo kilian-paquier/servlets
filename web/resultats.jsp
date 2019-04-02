@@ -18,6 +18,26 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Résultats des votes</h3>
     </div>
+
+    <div class="row animated fadeIn">
+        <div class="col-12">
+            <table class="table table-hover table-striped text-nowrap w-100">
+                <thead>
+                <tr>
+                    <td>Nom du candidat</td>
+                    <td>Parti</td>
+                    <td>Nombre de votes</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 <%@ include file="footer.jsp"%>

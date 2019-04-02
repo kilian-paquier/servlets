@@ -19,6 +19,22 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Participer au vote</h3>
     </div>
+
+    <form method="post" action="" class="animated fadeIn">
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2">
+                <label for="selectCandidat"></label>
+                <select class="browser-default custom-select" name="candidat" id="selectCandidat">
+                    <option selected disabled value="">Choisissez un candidat</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-8 offset-lg-2">
+                <button class="btn btn-dark w-100" type="submit" id="btnSubmit">Voter pour le candidat</button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 <%@ include file="footer.jsp"%>

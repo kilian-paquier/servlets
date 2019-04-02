@@ -39,7 +39,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login">Connexion</a>
+                    <a class="nav-link" href="connexion">Connexion</a>
                 </li>
             </ul>
         </div>

@@ -21,7 +21,7 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Connexion à l'application</h3>
     </div>
-    <form method="post" id="loginForm" action="LoginServlet">
+    <form method="post" id="loginForm" action="LoginServlet" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
@@ -60,9 +60,9 @@
             </div>
         </div>
     </form>
-    <div class="text-center mt-2 pb-3">
+    <div class="text-center mt-2 pb-3 animated fadeIn">
         <p>Pas encore inscrit ?
-            <a href="register">S'enregistrer</a>
+            <a href="enregistrement">S'enregistrer</a>
         </p>
     </div>
 </div>

@@ -19,7 +19,7 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Enregistrement dans l'application</h3>
     </div>
-    <form method="post" id="registerForm" action="">
+    <form method="post" id="registerForm" action="" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
@@ -79,9 +79,9 @@
             </div>
         </div>
     </form>
-    <div class="text-center mt-2 pb-3">
+    <div class="text-center mt-2 pb-3 animated fadeIn">
         <p>Déjà inscrit ?
-            <a href="login">Se connecter</a>
+            <a href="connexion">Se connecter</a>
         </p>
     </div>
 </div>
