@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/ArchiSI_Pozzi_Paquier_Couton?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/archisi_pozzi_paquier_couton?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password"/>
@@ -15,5 +15,9 @@
         <!-- DB schema will be updated if needed -->
         <property name="hibernate.hbm2ddl.auto">create</property>
         <mapping class="com.model.Candidate"/>
+        <mapping class="com.model.Party"/>
+        <mapping class="com.model.Admin"/>
+        <mapping class="com.model.Result"/>
+        <mapping class="com.model.Voter"/>
     </session-factory>
 </hibernate-configuration>
