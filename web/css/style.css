@@ -1,0 +1,41 @@
+.blue {
+    color: blue;
+}
+
+.main-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+}
+
+@media (min-width: 576px) {
+    .container {
+        width: 80% !important;
+        max-width: 80% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 70% !important;
+        max-width: 70% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 60% !important;
+        max-width: 60% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 50% !important;
+        max-width: 50% !important;
+    }
+}

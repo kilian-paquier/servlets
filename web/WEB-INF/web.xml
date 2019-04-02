@@ -4,5 +4,94 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
 
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/enregistrement</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Candidats</servlet-name>
+        <url-pattern>/candidats</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Votants</servlet-name>
+        <url-pattern>/votants</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Vote</servlet-name>
+        <url-pattern>/vote</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Resultats</servlet-name>
+        <url-pattern>/resultats</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Partis</servlet-name>
+        <url-pattern>/partis</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.alias.Login</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>com.alias.Index</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Candidats</servlet-name>
+        <servlet-class>com.alias.Candidats</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Partis</servlet-name>
+        <servlet-class>com.alias.Partis</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.alias.Register</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Resultats</servlet-name>
+        <servlet-class>com.alias.Resultats</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Votants</servlet-name>
+        <servlet-class>com.alias.Votants</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Vote</servlet-name>
+        <servlet-class>com.alias.Vote</servlet-class>
+    </servlet>
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>
