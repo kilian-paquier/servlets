@@ -4,89 +4,77 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <welcome-file-list>
-        <welcome-file>index</welcome-file>
-    </welcome-file-list>
-
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.servlet.HomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/connexion</url-pattern>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/accueil</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CandidateServlet</servlet-name>
+        <servlet-class>com.servlet.CandidateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/enregistrement</url-pattern>
+        <servlet-name>CandidateServlet</servlet-name>
+        <url-pattern>/candidat</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ResultsServlet</servlet-name>
+        <servlet-class>com.servlet.ResultsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Candidats</servlet-name>
-        <url-pattern>/candidats</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Index</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Votants</servlet-name>
-        <url-pattern>/votants</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Vote</servlet-name>
-        <url-pattern>/vote</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Resultats</servlet-name>
+        <servlet-name>ResultsServlet</servlet-name>
         <url-pattern>/resultats</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PartyServlet</servlet-name>
+        <servlet-class>com.servlet.PartyServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Partis</servlet-name>
-        <url-pattern>/partis</url-pattern>
+        <servlet-name>PartyServlet</servlet-name>
+        <url-pattern>/parti</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>com.alias.Login</servlet-class>
+        <servlet-name>VoterServlet</servlet-name>
+        <servlet-class>com.servlet.VoterServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>VoterServlet</servlet-name>
+        <url-pattern>/votant</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>Index</servlet-name>
-        <servlet-class>com.alias.Index</servlet-class>
+        <servlet-name>VoteServlet</servlet-name>
+        <servlet-class>com.servlet.VoteServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteServlet</servlet-name>
+        <url-pattern>/vote</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>Candidats</servlet-name>
-        <servlet-class>com.alias.Candidats</servlet-class>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.servlet.LoginServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>Partis</servlet-name>
-        <servlet-class>com.alias.Partis</servlet-class>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.servlet.HomeServlet</servlet-class>
     </servlet>
-
-    <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>com.alias.Register</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>Resultats</servlet-name>
-        <servlet-class>com.alias.Resultats</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>Votants</servlet-name>
-        <servlet-class>com.alias.Votants</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>Vote</servlet-name>
-        <servlet-class>com.alias.Vote</servlet-class>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/enregistrement</url-pattern>
+    </servlet-mapping>
 
     <jsp-config>
         <jsp-property-group>
@@ -94,4 +82,5 @@
             <page-encoding>UTF-8</page-encoding>
         </jsp-property-group>
     </jsp-config>
+
 </web-app>
