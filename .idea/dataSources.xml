@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="59e5e955-09b3-4add-ba68-386cabdccb87">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="7454e530-fb4c-4800-afe5-a8bc19e0f19c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>Hibernate
 
-D:/Documents/OneDrive/Cours/4A/S8/Architecture SI/Dépôt/resources/hibernate.cfg.xml</remarks>
+D:/Documents/polytech/S8/Archi/resources/hibernate.cfg.xml</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/ArchiSI_Pozzi_Paquier_Couton?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</jdbc-url>
       <driver-properties>
