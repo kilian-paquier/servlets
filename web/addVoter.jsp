@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
-  Date: 26/03/2019
-  Time: 11:16
+  Date: 01/04/2019
+  Time: 19:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Inscription</title>
+    <title>Ajout/Modification de votants</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,13 +17,13 @@
 <body>
 <div class="container border-light border rounded mt-5 pt-5 mb-5 pb-5">
     <div class="heading text-center pt-4">
-        <h3 class="card-title">Enregistrement dans l'application</h3>
+        <h3 class="card-title">Ajout/Modification d'un votant</h3>
     </div>
     <form method="post" id="registerForm" action="" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="nom" type="text" name="login" class="form-control">
+                    <input id="nom" type="text" name="nom" class="form-control">
                     <label for="nom">Nom *</label>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="prenom" type="text" name="login" class="form-control">
+                    <input id="prenom" type="text" name="prenom" class="form-control">
                     <label for="prenom">Prénom *</label>
                 </div>
             </div>
@@ -39,7 +39,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="ville" type="text" name="login" class="form-control">
+                    <input id="ville" type="text" name="ville" class="form-control">
                     <label for="ville">Ville *</label>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="birthDate">Date de naissance *</label>
-                    <input id="birthDate" type="date" name="login" class="form-control" placeholder="" value="">
+                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="">
                 </div>
             </div>
         </div>
@@ -75,15 +75,10 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
-                <button class="btn btn-dark w-100" type="submit" id="btnSubmit">S'inscrire</button>
+                <button class="btn btn-dark w-100" type="submit" id="btnSubmit">Créer/Modifier le votant</button>
             </div>
         </div>
     </form>
-    <div class="text-center mt-2 pb-3 animated fadeIn">
-        <p>Déjà inscrit ?
-            <a href="login.jsp">Se connecter</a>
-        </p>
-    </div>
 </div>
 </body>
 <%@ include file="footer.jsp" %>
