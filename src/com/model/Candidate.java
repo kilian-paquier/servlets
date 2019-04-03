@@ -1,11 +1,12 @@
 package com.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Candidate")
-public class Candidate extends Voter{
+public class Candidate extends Voter implements Serializable {
 
     private Result result;
     private Party party;

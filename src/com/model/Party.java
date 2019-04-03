@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "Party")
 public class Party {
+
     private String partyName;
     private String headquarters;
     private int nbCandidates;
