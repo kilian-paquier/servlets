@@ -1,30 +1,25 @@
 package com.servlet;
 
-import com.dao.CandidateUserDao;
-import com.model.Candidate;
+import com.manager.Manager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ResultsServlet extends HttpServlet {
+@WebServlet(name = "WelcomeServlet")
+public class WelcomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Candidate> candidateList = new CandidateUserDao().findAll();
-        if (candidateList == null)
-            candidateList = new ArrayList<>();
+        new Manager();
 
-        request.setAttribute("candidateList", candidateList);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("accueil");
         dispatcher.forward(request, response);
     }
 }

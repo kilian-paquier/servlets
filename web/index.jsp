@@ -1,4 +1,5 @@
-<%@ page import="com.manager.Manager" %><%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
   Created by IntelliJ IDEA.
   User: Kilian
   Date: 01/04/2019
@@ -6,7 +7,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<% new Manager(); %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -32,7 +32,15 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                <jsp:useBean id="candidateList" scope="request" type="java.util.List"/>
+                <c:forEach var="candidate" items="${candidateList}">
+                    <tr>
+                        <td><c:out
+                                value="${candidate.getFirstName()} + ' ' + ${candidate.getLastName()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
+                        <td><c:out
+                                value="${candidate.getParty().getPartyName()}">${candidate.getPart().getPartyName()}</c:out></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
                 <tfoot>
 

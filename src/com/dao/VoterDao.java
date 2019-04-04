@@ -1,99 +1,60 @@
 package com.dao;
 
-import com.daoInterface.VoterDaoInterface;
+import com.daoInterface.UserDaoInterface;
+import com.manager.Manager;
 import com.model.Voter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
-public class VoterDao implements VoterDaoInterface<Voter, Integer> {
+public class VoterDao implements UserDaoInterface<Voter, Integer> {
 
-    private Session currentSession;
-    private Transaction currentTransaction;
-
-    public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionWithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        return configuration.buildSessionFactory(builder.build());
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
-    @Override
-    public void update(Voter entity) {
-        currentSession.update(entity);
-    }
-
-    @Override
     public Voter findById(Integer id) {
-        return getCurrentSession().get(Voter.class, id);
+        Manager.beginTransaction();
+        Voter voter = Manager.getSession().find(Voter.class, id);
+        Manager.commitTransaction();
+        return voter;
     }
 
-    @Override
     public Voter findByLoginAndPassword(String login, String password) {
-        return (Voter) getCurrentSession().createQuery("from Voter where" +
-                "login = " + login + " and password = " + password + "");
+        Manager.beginTransaction();
+        Voter voter = (Voter) Manager.getSession().createQuery("from Voter where" +
+                " login = " + login + " and password =" + password + "");
+        Manager.commitTransaction();
+        return voter;
     }
 
-    @Override
     public void delete(Voter entity) {
-        getCurrentSession().delete(entity);
+        Manager.beginTransaction();
+        if (!Manager.getSession().contains(entity))
+            Manager.getSession().merge(entity);
+        Manager.getSession().delete(entity);
+        Manager.commitTransaction();
     }
 
-    @Override
     @SuppressWarnings("unchecked")
     public List<Voter> findAll() {
-        return (List<Voter>) getCurrentSession().createQuery("from Voter").list();
+        Manager.beginTransaction();
+        List<Voter> voters = (List<Voter>) Manager.getSession().createQuery("from Voter").list();
+        Manager.commitTransaction();
+        return voters;
     }
 
-    @Override
     public void deleteAll() {
-        for (Voter v : findAll()) {
-            delete(v);
+        Manager.beginTransaction();
+        for (Voter voter : findAll()) {
+            if (!Manager.getSession().contains(voter))
+                Manager.getSession().merge(voter);
+            Manager.getSession().delete(voter);
         }
+        Manager.commitTransaction();
     }
 
-    @Override
-    public void save(Voter entity) {
-        getCurrentSession().save(entity);
+    public void saveOrUpdate(Voter entity) {
+        Manager.beginTransaction();
+        Manager.getSession().saveOrUpdate(entity);
+        Manager.commitTransaction();
     }
 }

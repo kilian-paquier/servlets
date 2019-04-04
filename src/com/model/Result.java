@@ -20,7 +20,7 @@ public class Result implements Serializable {
     }
 
     @Id
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "candidate", referencedColumnName = "id")
     public Candidate getCandidate() {
         return candidate;

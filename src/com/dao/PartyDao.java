@@ -1,97 +1,52 @@
 package com.dao;
 
 import com.daoInterface.PartyDaoInterface;
+import com.daoInterface.UserDaoInterface;
+import com.manager.Manager;
 import com.model.Party;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
 public class PartyDao implements PartyDaoInterface<Party,String> {
 
-    private Session currentSession;
-
-    private Transaction currentTransaction;
-
-    public PartyDao() {
-    }
-
-    public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionWithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionWithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        return configuration.buildSessionFactory(builder.build());
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
-
-    @Override
-    public void update(Party entity) {
-        getCurrentSession().update(entity);
-    }
-
-    @Override
-    public Party findById(String s) {
-        return getCurrentSession().get(Party.class, s);
-    }
-
-    @Override
     public void delete(Party entity) {
-        getCurrentSession().delete(entity);
+        Manager.beginTransaction();
+        if(!Manager.getSession().contains(entity))
+            Manager.getSession().merge(entity);
+        Manager.getSession().delete(entity);
     }
 
-    @Override
     @SuppressWarnings("unchecked")
     public List<Party> findAll() {
-        return (List<Party>) getCurrentSession().createQuery("from Party").list();
+        Manager.beginTransaction();
+        List<Party> parties = (List<Party>) Manager.getSession().createQuery("from Party").list();
+        Manager.commitTransaction();
+        return parties;
     }
 
-    @Override
     public void deleteAll() {
-        for (Party p : findAll())
-            delete(p);
+        Manager.beginTransaction();
+        for (Party p : findAll()) {
+            if (!Manager.getSession().contains(p))
+                Manager.getSession().merge(p);
+            Manager.getSession().delete(p);
+        }
+        Manager.commitTransaction();
     }
 
-    @Override
-    public void save(Party entity) {
-        getCurrentSession().save(entity);
+    public void saveOrUpdate(Party entity) {
+        Manager.beginTransaction();
+        Manager.getSession().saveOrUpdate(entity);
+        Manager.commitTransaction();
+    }
+
+    public Party findByPartyName(String partyName) {
+        Manager.beginTransaction();
+        Party party = Manager.getSession().find(Party.class, partyName);
+        Manager.commitTransaction();
+        return party;
     }
 }

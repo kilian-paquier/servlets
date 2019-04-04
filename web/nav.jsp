@@ -34,11 +34,11 @@
                         </form>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                        aria-haspopup="true"
                        aria-expanded="false">Votants</a>
-                    <div class="dropdown-menu dropdown-secondary" name="option">
+                    <div class="dropdown-menu dropdown-secondary">
                         <form method="get" action="votant">
                             <button class="dropdown-item" name="Voter" value="add">Ajouter</button>
                             <button class="dropdown-item" name="Voter" value="modify">Modifier</button>
@@ -46,7 +46,7 @@
                         </form>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                        aria-haspopup="true"
                        aria-expanded="false">Partis</a>
