@@ -24,22 +24,22 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false">Candidats</a>
-                    <div class="dropdown-menu dropdown-secondary">
+                    <div class="dropdown-menu dropdown-secondary collapse">
                         <a class="dropdown-item" href="addCandidate.jsp">Ajouter</a>
                         <a class="dropdown-item" href="modifyCandidate.jsp">Modifier</a>
                         <a class="dropdown-item" href="deleteCandidate.jsp">Supprimer</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false">Votants</a>
-                    <div class="dropdown-menu dropdown-secondary">
+                    <div class="dropdown-menu dropdown-secondary collapse">
                         <a class="dropdown-item" href="addVoter.jsp" name="add">Ajouter</a>
                         <a class="dropdown-item" href="modifyVoter.jsp" name="modify">Modifier</a>
                         <a class="dropdown-item" href="deleteVoter.jsp" name="delete">Supprimer</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false">Partis</a>
                     <div class="dropdown-menu dropdown-secondary">
