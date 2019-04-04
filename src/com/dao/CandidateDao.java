@@ -18,10 +18,10 @@ public class CandidateDao implements UserDaoInterface<Candidate, Integer> {
 
     public Candidate findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Query query = Manager.getSession().createQuery("FROM Candidate WHERE login = ? AND password = ?");
-        query.setParameter(0, login);
-        query.setParameter(1, password);
-        Candidate candidate = (Candidate) query.getResultList();
+        Query query = Manager.getSession().createQuery("FROM Candidate WHERE login = :login AND password = :password");
+        query.setParameter("login", login);
+        query.setParameter("password", password);
+        Candidate candidate = (Candidate) query.getResultList().get(0);
         Manager.commitTransaction();
         return candidate;
     }

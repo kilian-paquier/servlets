@@ -1,4 +1,4 @@
-<jsp:useBean id="message" scope="request" type="java.lang.String"/>
+<jsp:useBean id="message" scope="request" type="java.lang.String" class="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -21,7 +21,7 @@
         <h3 class="card-title">Enregistrement dans l'application</h3>
     </div>
     <form method="post" id="registerForm" action="enregistrement" class="animated fadeIn">
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="nom" type="text" name="nom" class="form-control">
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="prenom" type="text" name="prenom" class="form-control">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="ville" type="text" name="ville" class="form-control">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="login" type="text" name="login" class="form-control">
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="password" type="password" name="password" class="form-control">
@@ -69,8 +69,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2" id="success">
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2 text-danger text-center" id="success">
                 ${message}
             </div>
         </div>

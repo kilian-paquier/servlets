@@ -18,7 +18,7 @@ public  abstract class User {
     @Column(name = "Name",  nullable = false)
     private String lastName;
 
-    @Column(name = "Login",  nullable = false)
+    @Column(name = "Login",  nullable = false, unique = true)
     private String login;
 
     @Column(name = "Password",  nullable = false)

@@ -46,7 +46,7 @@ public class Candidate extends Voter implements Serializable {
     }
 
     @Override
-    @Column(name = "Login",  nullable = false)
+    @Column(name = "Login",  nullable = false, unique = true)
     public String getLogin() {
         return super.getLogin();
     }

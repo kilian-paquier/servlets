@@ -26,11 +26,12 @@ public class RegisterServlet extends HttpServlet {
         String birthDay = request.getParameter("naissance");
 
         //Regarde si les champs sont vides
-        if (login.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || city.isEmpty() || birthDay.isEmpty())
+        if (login.equals("") || password.equals("") || firstName.equals("") || lastName.equals("") || city.equals("") || birthDay.equals(""))
         {
             request.setAttribute("message", "L'un des champs de l'enregistrement est vide");
             RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
+            return;
         }
 
         Voter voter = new Voter();
@@ -40,8 +41,6 @@ public class RegisterServlet extends HttpServlet {
         voter.setLogin(login);
         voter.setPassword(DigestUtils.sha256Hex(password));
         voter.setVote(false);
-
-        System.out.println(birthDay);
 
         {
             int year = Integer.parseInt(birthDay.split("-")[0]);
@@ -54,6 +53,7 @@ public class RegisterServlet extends HttpServlet {
 
         if (isCreate)
         {
+            request.setAttribute("registerSuccess", "Inscription réussie, veuillez vous connecter");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
         }

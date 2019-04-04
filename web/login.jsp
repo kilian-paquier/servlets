@@ -1,4 +1,5 @@
-<jsp:useBean id="message" scope="request" type="java.lang.String"/>
+<jsp:useBean id="registerSuccess" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="message" scope="request" type="java.lang.String" class="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -23,7 +24,7 @@
         <h3 class="card-title">Connexion à l'application</h3>
     </div>
     <form method="post" id="loginForm" action="connexion" class="animated fadeIn">
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="login" type="text" name="login" class="form-control">
@@ -31,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3 mt-3">
+        <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
                     <input id="password" type="password" name="password" class="form-control">
@@ -50,9 +51,12 @@
                 <a data-toggle="modal" data-target="#exampleModalPreview" href="">Mot de passe oublié ?</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2 text-center text-danger alert" id="success">
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-danger" id="error">
                 ${message}
+            </div>
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-info" id="success">
+                ${registerSuccess}
             </div>
         </div>
         <div class="row">

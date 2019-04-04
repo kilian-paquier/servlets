@@ -4,6 +4,7 @@ import com.manager.Manager;
 import com.model.Admin;
 import com.model.Candidate;
 import com.model.Voter;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -20,8 +23,7 @@ public class LoginServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-
-        System.out.println(login + " " + password);
+        password = DigestUtils.sha256Hex(password);
 
         //Regarde si les champs sont vides
         if (login.equals("") || password.equals(""))
@@ -52,7 +54,12 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("login", login);
             session.setAttribute("password", password);
-            System.out.println("j'ai le login : " + login);
+
+            List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+            if (candidateList == null)
+                candidateList = new ArrayList<>();
+
+            request.setAttribute("candidateList", candidateList);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
