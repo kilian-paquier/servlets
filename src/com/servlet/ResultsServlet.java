@@ -1,6 +1,6 @@
 package com.servlet;
 
-import com.dao.CandidateUserDao;
+import com.dao.CandidateDao;
 import com.model.Candidate;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +18,7 @@ public class ResultsServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Candidate> candidateList = new CandidateUserDao().findAll();
+        List<Candidate> candidateList = new CandidateDao().findAll();
         if (candidateList == null)
             candidateList = new ArrayList<>();
 

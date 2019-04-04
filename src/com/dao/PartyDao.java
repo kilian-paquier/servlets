@@ -37,10 +37,15 @@ public class PartyDao implements PartyDaoInterface<Party,String> {
         Manager.commitTransaction();
     }
 
-    public void saveOrUpdate(Party entity) {
-        Manager.beginTransaction();
-        Manager.getSession().saveOrUpdate(entity);
-        Manager.commitTransaction();
+    public boolean saveOrUpdate(Party entity) {
+        try {
+            Manager.beginTransaction();
+            Manager.getSession().saveOrUpdate(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public Party findByPartyName(String partyName) {

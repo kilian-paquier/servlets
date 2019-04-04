@@ -1,3 +1,4 @@
+<jsp:useBean id="message" scope="request" type="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -21,7 +22,7 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Connexion à l'application</h3>
     </div>
-    <form method="post" id="loginForm" action="" class="animated fadeIn">
+    <form method="post" id="loginForm" action="connexion" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
@@ -50,8 +51,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2" id="success">
-
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-danger alert" id="success">
+                ${message}
             </div>
         </div>
         <div class="row">

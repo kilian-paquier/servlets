@@ -4,9 +4,6 @@ import com.daoInterface.ResultDaoInterface;
 import com.manager.Manager;
 import com.model.Candidate;
 import com.model.Result;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -38,14 +35,17 @@ public class ResultDao implements ResultDaoInterface<Result, Candidate> {
         Manager.commitTransaction();
     }
 
-    @Override
-    public void saveOrUpdate(Result entity) {
-        Manager.beginTransaction();
-        Manager.getSession().saveOrUpdate(entity);
-        Manager.commitTransaction();
+    public boolean saveOrUpdate(Result entity) {
+        try {
+            Manager.beginTransaction();
+            Manager.getSession().saveOrUpdate(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    @Override
     public Result findByCandidate(Candidate candidate) {
         Manager.beginTransaction();
         Result result = Manager.getSession().find(Result.class, candidate);

@@ -13,9 +13,9 @@ public class Manager {
 
     private static Transaction transaction;
 
-    private static AdminUserDao adminDao;
+    private static AdminDao adminDao;
 
-    private static CandidateUserDao candidateDao;
+    private static CandidateDao candidateDao;
 
     private static PartyDao partyDao;
 
@@ -29,18 +29,15 @@ public class Manager {
         session = sessionFactory.openSession();
         transaction = null;
 
-        adminDao = new AdminUserDao();
-        candidateDao = new CandidateUserDao();
+        adminDao = new AdminDao();
+        candidateDao = new CandidateDao();
         partyDao = new PartyDao();
         resultDao = new ResultDao();
         voterDao = new VoterDao();
     }
 
     public static void beginTransaction() {
-        if (transaction == null)
-            transaction = session.beginTransaction();
-        else
-            transaction = session.getTransaction();
+        transaction = session.beginTransaction();
     }
 
     public static void commitTransaction() {
@@ -59,11 +56,11 @@ public class Manager {
         return transaction;
     }
 
-    public static AdminUserDao getAdminDao() {
+    public static AdminDao getAdminDao() {
         return adminDao;
     }
 
-    public static CandidateUserDao getCandidateDao() {
+    public static CandidateDao getCandidateDao() {
         return candidateDao;
     }
 

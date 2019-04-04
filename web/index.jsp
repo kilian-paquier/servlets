@@ -36,7 +36,7 @@
                 <c:forEach var="candidate" items="${candidateList}">
                     <tr>
                         <td><c:out
-                                value="${candidate.getFirstName()} + ' ' + ${candidate.getLastName()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
+                                value="${candidate.getId()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
                         <td><c:out
                                 value="${candidate.getParty().getPartyName()}">${candidate.getPart().getPartyName()}</c:out></td>
                     </tr>

@@ -6,6 +6,7 @@ import com.model.Voter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -20,8 +21,10 @@ public class VoterDao implements UserDaoInterface<Voter, Integer> {
 
     public Voter findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Voter voter = (Voter) Manager.getSession().createQuery("from Voter where" +
-                " login = " + login + " and password =" + password + "");
+        Query query = Manager.getSession().createQuery("FROM Voter WHERE login = ? AND password = ?");
+        query.setParameter(0, login);
+        query.setParameter(1, password);
+        Voter voter = (Voter) query.getResultList();
         Manager.commitTransaction();
         return voter;
     }
@@ -52,9 +55,14 @@ public class VoterDao implements UserDaoInterface<Voter, Integer> {
         Manager.commitTransaction();
     }
 
-    public void saveOrUpdate(Voter entity) {
-        Manager.beginTransaction();
-        Manager.getSession().saveOrUpdate(entity);
-        Manager.commitTransaction();
+    public boolean saveOrUpdate(Voter entity) {
+        try {
+            Manager.beginTransaction();
+            Manager.getSession().saveOrUpdate(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

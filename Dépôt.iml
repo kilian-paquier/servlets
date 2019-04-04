@@ -38,5 +38,6 @@
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.13" level="project" />
     <orderEntry type="library" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" name="jstl:jstl:1.2" level="project" />
+    <orderEntry type="library" name="commons-codec:commons-codec:1.12" level="project" />
   </component>
 </module>

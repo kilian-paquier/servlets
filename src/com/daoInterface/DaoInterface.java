@@ -6,5 +6,5 @@ public interface DaoInterface<T> {
     void delete(T entity);
     List<T> findAll();
     void deleteAll();
-    void saveOrUpdate(T entity);
+    boolean saveOrUpdate(T entity);
 }

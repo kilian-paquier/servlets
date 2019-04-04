@@ -1,3 +1,4 @@
+<jsp:useBean id="message" scope="request" type="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -19,11 +20,11 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Enregistrement dans l'application</h3>
     </div>
-    <form method="post" id="registerForm" action="" class="animated fadeIn">
+    <form method="post" id="registerForm" action="enregistrement" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="nom" type="text" name="login" class="form-control">
+                    <input id="nom" type="text" name="nom" class="form-control">
                     <label for="nom">Nom *</label>
                 </div>
             </div>
@@ -31,7 +32,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="prenom" type="text" name="login" class="form-control">
+                    <input id="prenom" type="text" name="prenom" class="form-control">
                     <label for="prenom">Prénom *</label>
                 </div>
             </div>
@@ -39,7 +40,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="ville" type="text" name="login" class="form-control">
+                    <input id="ville" type="text" name="ville" class="form-control">
                     <label for="ville">Ville *</label>
                 </div>
             </div>
@@ -64,13 +65,13 @@
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="birthDate">Date de naissance *</label>
-                    <input id="birthDate" type="date" name="login" class="form-control" placeholder="" value="">
+                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2" id="success">
-
+                ${message}
             </div>
         </div>
         <div class="row">

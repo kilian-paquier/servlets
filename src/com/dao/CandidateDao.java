@@ -3,10 +3,11 @@ package com.dao;
 import com.daoInterface.UserDaoInterface;
 import com.manager.Manager;
 import com.model.Candidate;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class CandidateUserDao implements UserDaoInterface<Candidate, Integer> {
+public class CandidateDao implements UserDaoInterface<Candidate, Integer> {
 
     public Candidate findById(Integer id) {
         Manager.beginTransaction();
@@ -17,8 +18,10 @@ public class CandidateUserDao implements UserDaoInterface<Candidate, Integer> {
 
     public Candidate findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Candidate candidate = (Candidate) Manager.getSession().createQuery("from Candidate where" +
-                " login = " + login + " and password = " + password);
+        Query query = Manager.getSession().createQuery("FROM Candidate WHERE login = ? AND password = ?");
+        query.setParameter(0, login);
+        query.setParameter(1, password);
+        Candidate candidate = (Candidate) query.getResultList();
         Manager.commitTransaction();
         return candidate;
     }
@@ -50,9 +53,14 @@ public class CandidateUserDao implements UserDaoInterface<Candidate, Integer> {
         Manager.commitTransaction();
     }
 
-    public void saveOrUpdate(Candidate entity) {
-        Manager.beginTransaction();
-        Manager.getSession().saveOrUpdate(entity);
-        Manager.commitTransaction();
+    public boolean saveOrUpdate(Candidate entity) {
+        try {
+            Manager.beginTransaction();
+            Manager.getSession().saveOrUpdate(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
