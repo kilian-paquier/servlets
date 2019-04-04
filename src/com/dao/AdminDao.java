@@ -18,10 +18,10 @@ public class AdminDao implements UserDaoInterface<Admin, Integer> {
 
     public Admin findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Query query = Manager.getSession().createQuery("FROM Admin WHERE login = ? AND password = ?");
-        query.setParameter(0, login);
-        query.setParameter(1, password);
-        Admin admin = (Admin) query.getResultList();
+        Query query = Manager.getSession().createQuery("FROM Admin WHERE login = :login AND password = :password");
+        query.setParameter("login", login);
+        query.setParameter("password", password);
+        Admin admin = (Admin) query.getResultList().get(0);
         Manager.commitTransaction();
         return admin;
     }

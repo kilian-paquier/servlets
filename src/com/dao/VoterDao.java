@@ -21,10 +21,10 @@ public class VoterDao implements UserDaoInterface<Voter, Integer> {
 
     public Voter findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Query query = Manager.getSession().createQuery("FROM Voter WHERE login = ? AND password = ?");
-        query.setParameter(0, login);
-        query.setParameter(1, password);
-        Voter voter = (Voter) query.getResultList();
+        Query query = Manager.getSession().createQuery("FROM Voter WHERE login = :login AND password = :password");
+        query.setParameter("login", login);
+        query.setParameter("password", password);
+        Voter voter = (Voter) query.getResultList().get(0);
         Manager.commitTransaction();
         return voter;
     }
