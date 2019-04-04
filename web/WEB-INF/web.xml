@@ -4,10 +4,83 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.servlet.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/accueil</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CandidateServlet</servlet-name>
+        <servlet-class>com.servlet.CandidateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CandidateServlet</servlet-name>
+        <url-pattern>/candidat</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ResultsServlet</servlet-name>
+        <servlet-class>com.servlet.ResultsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResultsServlet</servlet-name>
+        <url-pattern>/resultats</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PartyServlet</servlet-name>
+        <servlet-class>com.servlet.PartyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PartyServlet</servlet-name>
+        <url-pattern>/parti</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoterServlet</servlet-name>
+        <servlet-class>com.servlet.VoterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoterServlet</servlet-name>
+        <url-pattern>/votant</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VoteServlet</servlet-name>
+        <servlet-class>com.servlet.VoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VoteServlet</servlet-name>
+        <url-pattern>/vote</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.servlet.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/enregistrement</url-pattern>
+    </servlet-mapping>
+
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
             <page-encoding>UTF-8</page-encoding>
         </jsp-property-group>
     </jsp-config>
+
 </web-app>

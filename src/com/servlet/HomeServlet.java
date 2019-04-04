@@ -6,46 +6,44 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet")
-public class LoginServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String city = request.getParameter("city");
+        String birthDay = request.getParameter("birthDay");
 
         //Regarde si les champs sont vides
-        if (login.isEmpty() || password.isEmpty())
+        if (login.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || city.isEmpty() || birthDay.isEmpty())
         {
             System.out.println("Champ vide");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
         }
 
         //Cherche l'utilisateur
-        boolean isFind = true;
-        if (isFind)
+        boolean isCreate = true;
+        if (isCreate)
         {
-            HttpSession session = request.getSession();
-            session.setAttribute("login", login);
-            session.setAttribute("password", password);
-            System.out.println("j'ai le login : "+login);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login");
             dispatcher.forward(request, response);
         }
         else
         {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            System.out.println("PB BDD");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("register");
             dispatcher.forward(request, response);
         }
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
 }
