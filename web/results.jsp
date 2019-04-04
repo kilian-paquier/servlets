@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -24,13 +25,21 @@
             <table class="table table-hover table-striped text-nowrap w-100">
                 <thead>
                 <tr>
-                    <td>Nom du candidat</td>
-                    <td>Parti</td>
-                    <td>Nombre de votes</td>
+                    <th>Nom du candidat</th>
+                    <th>Parti</th>
+                    <th>Nombre de votes</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                <jsp:useBean id="candidateList" scope="request" type="java.util.List"/>
+                <c:forEach var="candidate" items="${candidateList}">
+                    <tr>
+                        <td><c:out
+                                value="${candidate.getFirstName()} + ' ' + ${candidate.getLastName()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
+                        <td><c:out value=""></c:out></td>
+                        <td><c:out value=""></c:out></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
                 <tfoot>
 

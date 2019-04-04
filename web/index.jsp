@@ -27,8 +27,8 @@
             <table class="table table-hover table-striped text-nowrap w-100">
                 <thead>
                 <tr>
-                    <td>Nom du candidat</td>
-                    <td>Parti</td>
+                    <th>Nom du candidat</th>
+                    <th>Parti</th>
                 </tr>
                 </thead>
                 <tbody>

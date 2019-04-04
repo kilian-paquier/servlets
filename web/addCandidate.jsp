@@ -64,7 +64,7 @@
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="parti">Parti du candidat *</label>
-                    <select id="parti" class="mdb-select md-form" name="parti">
+                    <select id="parti" class="custom-select default-browser" name="parti">
                         <option selected disabled>Sélection un parti</option>
                     </select>
                 </div>
@@ -84,9 +84,4 @@
 </div>
 </body>
 <%@ include file="footer.jsp" %>
-<script>
-    $(document).ready(function() {
-        $('.mdb-select').materialSelect();
-    });
-</script>
 </html>
