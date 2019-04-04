@@ -1,5 +1,6 @@
 package com.servlet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ public class VoterServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String option = request.getParameter("Voter");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(option+"Voter.jsp");
+        dispatcher.forward(request, response);
     }
 }
