@@ -14,7 +14,8 @@ public class CandidateServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("candidats.jsp");
+        String option = request.getParameter("Candidate");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(option+"Candidate.jsp");
         dispatcher.forward(request, response);
     }
 }

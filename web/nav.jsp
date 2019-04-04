@@ -20,16 +20,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.jsp">Liste électorale</a>
+                    <a class="nav-link" href="accueil">Liste électorale</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                        aria-haspopup="true"
                        aria-expanded="false">Candidats</a>
                     <div class="dropdown-menu dropdown-secondary">
-                        <a class="dropdown-item" href="addCandidate.jsp">Ajouter</a>
-                        <a class="dropdown-item" href="modifyCandidate.jsp">Modifier</a>
-                        <a class="dropdown-item" href="deleteCandidate.jsp">Supprimer</a>
+                        <form method="get" action="candidat">
+                            <button class="dropdown-item" name="Candidate" value="add">Ajouter</button>
+                            <button class="dropdown-item" name="Candidate" value="modify">Modifier</button>
+                            <button class="dropdown-item" name="Candidate" value="delete">Supprimer</button>
+                        </form>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -49,21 +51,23 @@
                        aria-haspopup="true"
                        aria-expanded="false">Partis</a>
                     <div class="dropdown-menu dropdown-secondary">
-                        <a class="dropdown-item" href="addParty.jsp">Ajouter</a>
-                        <a class="dropdown-item" href="modifyParty.jsp">Modifier</a>
-                        <a class="dropdown-item" href="deleteParty.jsp">Supprimer</a>
+                        <form method="get" action="parti">
+                            <button class="dropdown-item" name="Party" value="add">Ajouter</button>
+                            <button class="dropdown-item" name="Party" value="modify">Modifier</button>
+                            <button class="dropdown-item" name="Party" value="delete">Supprimer</button>
+                        </form>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="vote.jsp">Voter</a>
+                    <a class="nav-link" href="vote">Voter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="results.jsp">Résultats</a>
+                    <a class="nav-link" href="resultats">Résultats</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Connexion</a>
+                    <a class="nav-link" href="connexion">Connexion</a>
                 </li>
             </ul>
         </div>
