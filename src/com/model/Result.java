@@ -7,10 +7,23 @@ import java.io.Serializable;
 @Table(name = "Result")
 public class Result implements Serializable {
     private static final long serialVersionUID = -2092390836751020965L;
-    private int nbVotes;
+
+    @Id
+    @OneToOne
+    @JoinColumn(name = "candidate", referencedColumnName = "id")
     private Candidate candidate;
 
-    @Column(name = "nbVotes", nullable = false)
+    @Column(name = "nb_votes", nullable = false)
+    private int nbVotes;
+
+    public Result(int nbVotes) {
+        this.nbVotes = nbVotes;
+    }
+
+    public Result() {
+
+    }
+
     public int getNbVote() {
         return nbVotes;
     }
@@ -19,14 +32,15 @@ public class Result implements Serializable {
         this.nbVotes = nbVotes;
     }
 
-    @Id
-    @OneToOne
-    @JoinColumn(name = "candidate", referencedColumnName = "id")
     public Candidate getCandidate() {
         return candidate;
     }
 
     public void setCandidate(Candidate candidate) {
         this.candidate = candidate;
+    }
+
+    void incrementVote() {
+        this.nbVotes++;
     }
 }

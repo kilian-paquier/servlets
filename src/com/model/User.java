@@ -6,22 +6,22 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @DiscriminatorFormula("'GenericUser'")
-public  abstract class User {
+public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "FirstName",  nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "Name",  nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "Login",  nullable = false, unique = true)
+    @Column(name = "login", nullable = false, unique = true)
     private String login;
 
-    @Column(name = "Password",  nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     public int getId() {
@@ -62,5 +62,10 @@ public  abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return lastName + " " + firstName;
     }
 }

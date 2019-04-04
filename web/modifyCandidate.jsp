@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -19,13 +20,17 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Modification d'un candidat</h3>
     </div>
-    <form method="post" id="registerForm" action="" class="animated fadeIn">
+    <form method="post" action="" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="votant">Candidat à modifier *</label>
                     <select id="votant" class="custom-select default-browser" name="candidat">
-                        <option selected disabled>Sélectionnez un candidat</option>
+                        <option selected disabled name="id_candidat" value="">Sélectionnez un candidat</option>
+                        <jsp:useBean id="candidateList" scope="request" type="java.util.List"/>
+                        <c:forEach var="candidate" items="${candidateList}">
+                            <option value="${candidate.getId()}">${candidate}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>

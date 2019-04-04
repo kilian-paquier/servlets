@@ -3,11 +3,8 @@ package com.dao;
 import com.daoInterface.UserDaoInterface;
 import com.manager.Manager;
 import com.model.Voter;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class VoterDao implements UserDaoInterface<Voter, Integer> {
@@ -21,20 +18,28 @@ public class VoterDao implements UserDaoInterface<Voter, Integer> {
 
     public Voter findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Query query = Manager.getSession().createQuery("FROM Voter WHERE login = :login AND password = :password");
+        TypedQuery<Voter> query = Manager.getSession().createQuery("FROM Voter WHERE login = :login AND password = :password", Voter.class);
         query.setParameter("login", login);
         query.setParameter("password", password);
-        Voter voter = (Voter) query.getResultList().get(0);
+        List<Voter> voters = query.getResultList();
         Manager.commitTransaction();
-        return voter;
+        if (voters.size() == 0)
+            return null;
+        else
+            return voters.get(0);
     }
 
-    public void delete(Voter entity) {
-        Manager.beginTransaction();
-        if (!Manager.getSession().contains(entity))
-            Manager.getSession().merge(entity);
-        Manager.getSession().delete(entity);
-        Manager.commitTransaction();
+    public boolean delete(Voter entity) {
+        try {
+            Manager.beginTransaction();
+            if (!Manager.getSession().contains(entity))
+                Manager.getSession().merge(entity);
+            Manager.getSession().delete(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")

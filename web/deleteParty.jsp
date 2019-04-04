@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="successMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="errorMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -24,9 +27,21 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <label for="selectParty">Parti à supprimer *</label>
-                <select class="browser-default custom-select" name="candidat" id="selectParty">
+                <select class="browser-default custom-select" name="parti_name" id="selectParty">
                     <option selected disabled value="">Choisissez un parti</option>
+                    <jsp:useBean id="partyList" scope="request" type="java.util.List"/>
+                    <c:forEach var="party" items="${partyList}">
+                        <option value="${party.getPartyName()}">${party.getPartyName()}</option>
+                    </c:forEach>
                 </select>
+            </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-danger" id="error">
+                ${errorMessage}
+            </div>
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-info" id="success">
+                ${successMessage}
             </div>
         </div>
         <div class="row">

@@ -1,3 +1,6 @@
+<jsp:useBean id="successMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="errorMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -19,20 +22,32 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Modification d'un parti</h3>
     </div>
-    <form method="post" id="registerForm" action="" class="animated fadeIn">
+    <form method="get" action="" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="votant">Parti à modifier *</label>
-                    <select id="votant" class="custom-select default-browser" name="parti">
-                        <option selected disabled>Sélectionnez un parti</option>
+                    <select id="votant" class="custom-select default-browser" name="parti_name">
+                        <option selected disabled value="">Sélectionnez un parti</option>
+                        <jsp:useBean id="partyList" scope="request" type="java.util.List"/>
+                        <c:forEach var="party" items="${partyList}">
+                            <option value="${party.getPartyName()}">${party.getPartyName()}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
         </div>
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-danger" id="error">
+                ${errorMessage}
+            </div>
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-info" id="success">
+                ${successMessage}
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
-                <button class="btn btn-dark w-100" type="submit" id="btnSubmit">Modifier le parti</button>
+                <button class="btn btn-dark w-100" type="submit" id="btnSubmit" name="Party" value="addModify">Modifier le parti</button>
             </div>
         </div>
     </form>

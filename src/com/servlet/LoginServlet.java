@@ -25,7 +25,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         password = DigestUtils.sha256Hex(password);
 
-        //Regarde si les champs sont vides
         if (login.equals("") || password.equals(""))
         {
             request.setAttribute("message", "L'un des champs de connexion est vide");
@@ -47,6 +46,9 @@ public class LoginServlet extends HttpServlet {
         if (candidate == null && !isFound)
             admin = Manager.getAdminDao().findByLoginAndPassword(login, password);
         else
+            isFound = true;
+
+        if (admin != null)
             isFound = true;
 
         if (isFound)

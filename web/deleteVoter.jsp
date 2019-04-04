@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="successMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="errorMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -26,7 +29,19 @@
                 <label for="selectVoter">Votant à supprimer *</label>
                 <select class="browser-default custom-select" name="votant" id="selectVoter">
                     <option selected disabled value="">Choisissez un votant</option>
+                    <jsp:useBean id="voterList" scope="request" type="java.util.List"/>
+                    <c:forEach var="voter" items="${voterList}">
+                        <option value="${voter.getId()}">${voter.getFirstName()} + " " + ${voter.getLastName()}</option>
+                    </c:forEach>
                 </select>
+            </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2" id="error">
+                ${errorMessage}
+            </div>
+            <div class="col-12 col-lg-8 offset-lg-2" id="success">
+                ${successMessage}
             </div>
         </div>
         <div class="row">

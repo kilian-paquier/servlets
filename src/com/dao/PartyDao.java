@@ -12,11 +12,16 @@ import java.util.List;
 
 public class PartyDao implements PartyDaoInterface<Party,String> {
 
-    public void delete(Party entity) {
-        Manager.beginTransaction();
-        if(!Manager.getSession().contains(entity))
-            Manager.getSession().merge(entity);
-        Manager.getSession().delete(entity);
+    public boolean delete(Party entity) {
+        try {
+            Manager.beginTransaction();
+            if (!Manager.getSession().contains(entity))
+                Manager.getSession().merge(entity);
+            Manager.getSession().delete(entity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")

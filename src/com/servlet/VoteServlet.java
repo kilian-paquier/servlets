@@ -1,19 +1,51 @@
 package com.servlet;
 
+import com.manager.Manager;
+import com.model.Candidate;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VoteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idCandidat = request.getParameter("id_candidat");
 
+        if (idCandidat.equals("")) {
+            request.setAttribute("errorMessage", "Veuillez saisir le candidat pour lequel vosu voulez voter");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        Candidate candidate = Manager.getCandidateDao().findById(Integer.valueOf(idCandidat));
+        candidate.incrementVote();
+        boolean voteCommitted = Manager.getCandidateDao().saveOrUpdate(candidate);
+
+        // TODO Prendre en compte si la session a déjà voté ou non
+
+        if (voteCommitted) {
+            request.setAttribute("successMessage", "Votre vote pour " + candidate.toString() + " a bien été pris en compte");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("errorMessage", "Votre vote pour " + candidate.toString() + " n'a pas pu être pris en compte");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+        if (candidateList == null)
+            candidateList = new ArrayList<>();
+        request.setAttribute("candidateList", candidateList);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
         dispatcher.forward(request, response);
     }

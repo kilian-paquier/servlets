@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Résultats des votes</title>
 </head>
-<%@ include file="nav.jsp"%>
+<%@ include file="nav.jsp" %>
 <body>
 <div class="container mt-5 pt-5 mb-5 pb-5 border border-light rounded">
     <div class="heading text-center pt-4">
@@ -35,9 +35,9 @@
                 <c:forEach var="candidate" items="${candidateList}">
                     <tr>
                         <td><c:out
-                                value="${candidate.getFirstName()} + ' ' + ${candidate.getLastName()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
+                                value="${candidate}">${candidate}</c:out></td>
                         <td><c:out
-                                value="${candidate.getParty().getPartyName()}">${candidate.getPart().getPartyName()}</c:out></td>
+                                value="${candidate.getParty().getPartyName()}">${candidate.getParty().getPartyName()}</c:out></td>
                         <td><c:out
                                 value="${candidate.getResult().getNbVote()}">${candidate.getResult().getNbVote()}</c:out></td>
                     </tr>
@@ -51,5 +51,5 @@
     </div>
 </div>
 </body>
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp" %>
 </html>
