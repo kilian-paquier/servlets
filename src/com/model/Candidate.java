@@ -74,7 +74,7 @@ public class Candidate extends Voter implements Serializable {
     }
 
     public void setCity(String city) {
-        this.setCity(city);
+        super.setCity(city);
     }
 
     @Override

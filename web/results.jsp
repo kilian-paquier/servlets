@@ -36,8 +36,10 @@
                     <tr>
                         <td><c:out
                                 value="${candidate.getFirstName()} + ' ' + ${candidate.getLastName()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
-                        <td><c:out value=""></c:out></td>
-                        <td><c:out value=""></c:out></td>
+                        <td><c:out
+                                value="${candidate.getParty().getPartyName()}">${candidate.getPart().getPartyName()}</c:out></td>
+                        <td><c:out
+                                value="${candidate.getResult().getNbVote()}">${candidate.getResult().getNbVote()}</c:out></td>
                     </tr>
                 </c:forEach>
                 </tbody>
