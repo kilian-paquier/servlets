@@ -76,9 +76,9 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String type = request.getParameter("type");
+        HttpSession session = request.getSession();
+        String type = session.getAttribute("type").toString();
         if (type != null) {
-            HttpSession session = request.getSession();
             session.invalidate();
             request.setAttribute("registerSuccess", "Déconnexion réussit");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
