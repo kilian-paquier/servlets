@@ -1,3 +1,5 @@
+<jsp:useBean id="successMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="errorMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -35,7 +37,14 @@
                 </div>
             </div>
         </div>
-
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-danger" id="error">
+                ${errorMessage}
+            </div>
+            <div class="col-12 col-lg-8 offset-lg-2 text-center text-info" id="success">
+                ${successMessage}
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <button class="btn btn-dark w-100" type="submit" id="btnSubmit" value="modifying" name="Voter">Modifier le votant</button>

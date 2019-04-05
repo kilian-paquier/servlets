@@ -69,17 +69,28 @@ public class CandidateServlet extends HttpServlet {
         String oldId = request.getParameter("id_candidat");
         String lastName = request.getParameter("nom");
         String firstName = request.getParameter("prenom");
-        String login = request.getParameter("login");
+        String login;
         String password = request.getParameter("password");
         String city = request.getParameter("ville");
         String partyName = request.getParameter("parti");
         String birthDate = request.getParameter("naissance");
 
-        if (lastName.equals("") || firstName.equals("") || login.equals("") || (option.equals("add") && (password == null || password.equals(""))) || city.equals("") || partyName == null || birthDate.equals("")) {
-            request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
-            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Candidate.jsp");
-            dispatcher.forward(request, response);
-            return;
+        if (option.equals("modifying")) {
+            login = request.getParameter("loginModify");
+            if (lastName.equals("") || firstName.equals("") || login.equals("") || city.equals("") || partyName == null || birthDate.equals("")) {
+                request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Candidate.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+        } else {
+            login = request.getParameter("loginAdd");
+            if (lastName.equals("") || firstName.equals("") || login.equals("") || (password == null || password.equals("")) || city.equals("") || partyName == null || birthDate.equals("")) {
+                request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Candidate.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
         }
 
         Candidate candidate;

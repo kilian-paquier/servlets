@@ -31,8 +31,8 @@
                 <div class="row">
                     <div class="col-12 col-lg-8 offset-lg-2">
                         <div class="md-form">
-                            <input id="nom" type="text" name="nom" class="form-control" value="${nom}">
-                            <label for="nom">Nom du parti *</label>
+                            <input id="nomAdd" type="text" name="nomAdd" class="form-control" value="${nom}">
+                            <label for="nomAdd">Nom du parti *</label>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                 <div class="row">
                     <div class="col-12 col-lg-8 offset-lg-2">
                         <div class="md-form">
-                            <input id="nom" type="text" name="nom" class="form-control" value="${nom}" disabled>
-                            <label for="nom">Nom du parti *</label>
+                            <input id="nomModify" type="text" name="nomModify" class="form-control" value="${nom}" disabled>
+                            <label for="nomModify">Nom du parti *</label>
                         </div>
                     </div>
                 </div>

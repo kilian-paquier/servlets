@@ -56,16 +56,28 @@ public class PartyServlet extends HttpServlet {
 
     private void addParty(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String option = request.getParameter("Party");
-        String partyName = request.getParameter("nom");
+        String partyName;
         String headquarters = request.getParameter("ville");
         String oldPartyName = request.getParameter("parti_name");
 
-        if (partyName.equals("") || headquarters.equals("")) {
-            request.setAttribute("errorMessage", "L'un des champs pour le parti n'a pas été saisi");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addParty.jsp");
-            dispatcher.forward(request, response);
-            return;
+        if (option.equals("modifying")) {
+            partyName = request.getParameter("nomModify");
+            if (partyName.equals("") || headquarters.equals("")) {
+                request.setAttribute("errorMessage", "L'un des champs pour le parti n'a pas été saisi");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("addParty.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+        } else {
+            partyName = request.getParameter("nomAdd");
+            if (partyName.equals("") || headquarters.equals("")) {
+                request.setAttribute("errorMessage", "L'un des champs pour le parti n'a pas été saisi");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("addParty.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
         }
+
 
         Party party;
         if (option.equals("add")) {

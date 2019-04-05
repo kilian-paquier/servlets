@@ -96,20 +96,33 @@ public class VoterServlet extends HttpServlet {
 
     private void addVoter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String option = request.getParameter("Voter");
-        String oldId = request.getParameter("id_voter");
+        String oldId = request.getParameter("id_votant");
         String lastName = request.getParameter("nom");
         String firstName = request.getParameter("prenom");
-        String login = request.getParameter("login");
+        String login;
         String password = request.getParameter("password");
         String city = request.getParameter("ville");
         String birthDate = request.getParameter("naissance");
 
-        if (lastName.equals("") || firstName.equals("") || login.equals("") || (option.equals("add") && (password == null || password.equals(""))) || city.equals("") || birthDate.equals("")) {
-            request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
-            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
-            dispatcher.forward(request, response);
-            return;
+        if (option.equals("modifying")) {
+            login = request.getParameter("loginModify");
+            if (lastName.equals("") || firstName.equals("") || login.equals("") || city.equals("") || birthDate.equals("")) {
+                request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
         }
+        else {
+            login = request.getParameter("loginAdd");
+            if (lastName.equals("") || firstName.equals("") || login.equals("") || (password == null || password.equals("")) || city.equals("") || birthDate.equals("")) {
+                request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+        }
+
 
         Voter voter;
 
@@ -141,6 +154,7 @@ public class VoterServlet extends HttpServlet {
         request.setAttribute("voterList", voters);
 
         if (inserted && option.equals("add")) {
+            request.setAttribute("option", "add");
             request.setAttribute("successMessage", "L'enregistrement du compte votant a réussi");
             RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
             dispatcher.forward(request, response);
@@ -149,6 +163,7 @@ public class VoterServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("modifyVoter.jsp");
             dispatcher.forward(request, response);
         } else if (option.equals("add")) {
+            request.setAttribute("option", "add");
             request.setAttribute("errorMessage", "L'enregistrement du compte votant n'a pas réussi");
             RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
             dispatcher.forward(request, response);

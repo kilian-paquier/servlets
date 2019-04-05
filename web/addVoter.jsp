@@ -54,8 +54,8 @@
                 <div class="row mb-3 mt-3">
                     <div class="col-12 col-lg-8 offset-lg-2">
                         <div class="md-form">
-                            <input id="login" type="text" name="login" class="form-control" value="">
-                            <label for="login">Identifiant utilisateur *</label>
+                            <input id="loginAdd" type="text" name="loginAdd" class="form-control" value="">
+                            <label for="loginAdd">Identifiant utilisateur *</label>
                         </div>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                 <div class="row mb-3 mt-3">
                     <div class="col-12 col-lg-8 offset-lg-2">
                         <div class="md-form">
-                            <input id="login" type="text" name="login" class="form-control" value="${voterAccount.login}" disabled>
-                            <label for="login">Identifiant utilisateur *</label>
+                            <input id="loginModify" type="text" name="loginModify" class="form-control" value="${voterAccount.login}" disabled>
+                            <label for="loginModify">Identifiant utilisateur *</label>
                         </div>
                     </div>
                 </div>

@@ -23,32 +23,30 @@ public class LoginServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        
+
         if (!login.equals("") && !password.equals("")) {
             password = DigestUtils.sha256Hex(password);
             String type = "";
             boolean isFound = false;
-            Admin admin = null;
-            Candidate candidate = null;
+            Admin admin;
+            Candidate candidate;
             Voter voter = Manager.getVoterDao().findByLoginAndPassword(login, password);
 
-            if (voter == null)
+            if (voter == null) {
                 candidate = Manager.getCandidateDao().findByLoginAndPassword(login, password);
-            else {
-                isFound = true;
-                type = "votant";
-            }
-
-            if (candidate == null && !isFound) {
-                admin = Manager.getAdminDao().findByLoginAndPassword(login, password);
+                if (candidate == null) {
+                    admin = Manager.getAdminDao().findByLoginAndPassword(login, password);
+                    if (admin != null) {
+                        isFound = true;
+                        type = "admin";
+                    }
+                } else {
+                    isFound = true;
+                    type = "candidat";
+                }
             } else {
                 isFound = true;
-                type = "candidat";
-            }
-            
-            if (admin != null) {
-                isFound = true;
-                type = "admin";
+                type = "votant";
             }
 
             if (isFound) {
