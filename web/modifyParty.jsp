@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
-                <button class="btn btn-dark w-100" type="submit" id="btnSubmit" name="Party" value="addModify">Modifier le parti</button>
+                <button class="btn btn-dark w-100" type="submit" id="btnSubmit" name="Party" value="modifying">Modifier le parti</button>
             </div>
         </div>
     </form>

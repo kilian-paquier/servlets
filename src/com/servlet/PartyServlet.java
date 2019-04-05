@@ -17,7 +17,7 @@ public class PartyServlet extends HttpServlet {
         String option = request.getParameter("Party");
         switch (option) {
             case "add":
-            case "addModify":
+            case "modifying":
                 addParty(request, response);
                 break;
             case "modify":
@@ -43,10 +43,12 @@ public class PartyServlet extends HttpServlet {
 
         String option = request.getParameter("Party");
 
-        if (option.equals("addModify")) {
+        if (option.equals("modifying")) {
+            request.setAttribute("option", "modifying");
             modifyParty(request, response);
             return;
         }
+        request.setAttribute("option", "add");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Party.jsp");
         dispatcher.forward(request, response);
@@ -82,9 +84,14 @@ public class PartyServlet extends HttpServlet {
             request.setAttribute("successMessage", "Le parti a bien été créé");
             RequestDispatcher dispatcher = request.getRequestDispatcher("addParty.jsp");
             dispatcher.forward(request, response);
-        } else if (created && option.equals("addModify")) {
+        } else if (created && option.equals("modifying")) {
+            List<Party> partyList = Manager.getPartyDao().findAll();
+            if (partyList == null)
+                partyList = new ArrayList<>();
+            request.setAttribute("partyList", partyList);
+
             request.setAttribute("successMessage", "Le parti a bien été modifié");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addParty.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("modifyParty.jsp");
             dispatcher.forward(request, response);
         } else if (option.equals("add")) {
             request.setAttribute("errorMessage", "Le parti n'a pas pu être ajouté à la base de données");
