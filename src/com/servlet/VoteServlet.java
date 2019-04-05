@@ -29,8 +29,6 @@ public class VoteServlet extends HttpServlet {
         candidate.incrementVote();
         boolean voteCommitted = Manager.getCandidateDao().saveOrUpdate(candidate);
 
-        // TODO Prendre en compte si la session a déjà voté ou non
-
         if (voteCommitted) {
             request.setAttribute("successMessage", "Votre vote pour " + candidate.toString() + " a bien été pris en compte");
             RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");

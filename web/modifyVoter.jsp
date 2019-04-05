@@ -20,16 +20,16 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Modification d'un votant</h3>
     </div>
-    <form method="post" id="registerForm" action="votant" class="animated fadeIn">
+    <form method="get" action="" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="votant">Votant à modifier *</label>
-                    <select id="votant" class="custom-select default-browser" name="votant">
+                    <select id="votant" class="custom-select default-browser" name="id_votant">
                         <option selected disabled>Sélectionnez un votant</option>
                         <jsp:useBean id="voterList" scope="request" type="java.util.List"/>
                         <c:forEach var="voter" items="${voterList}">
-                            <option value="${voter.getId()}">${voter.getFirstName()} + " " + ${voter.getLastName()}</option>
+                            <option value="${voter.getId()}">${voter}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -38,7 +38,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
-                <button class="btn btn-dark w-100" type="submit" id="btnSubmit">Modifier le votant</button>
+                <button class="btn btn-dark w-100" type="submit" id="btnSubmit" value="modifying" name="Voter">Modifier le votant</button>
             </div>
         </div>
     </form>
