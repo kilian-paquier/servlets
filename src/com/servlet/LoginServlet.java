@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         
         if (!login.equals("") && !password.equals("")) {
             password = DigestUtils.sha256Hex(password);
-            String type = null;
+            String type = "";
             boolean isFound = false;
             Admin admin = null;
             Candidate candidate = null;
