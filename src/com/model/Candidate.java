@@ -11,7 +11,7 @@ public class Candidate extends Voter implements Serializable {
     private Result result;
 
     @ManyToOne
-    @JoinColumn(name = "party", nullable = false)
+    @JoinColumn(name = "party_name", nullable = false)
     private Party party;
 
     public Result getResult() {

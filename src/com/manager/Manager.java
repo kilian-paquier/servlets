@@ -42,7 +42,6 @@ public class Manager {
     public static void beginTransaction() {
         if (transaction == null || !transaction.isActive())
             transaction = session.beginTransaction();
-
     }
 
     public static Manager getManager() {

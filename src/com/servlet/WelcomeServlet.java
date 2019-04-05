@@ -17,7 +17,7 @@ public class WelcomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Manager manager = Manager.getManager();
+        Manager.getManager();
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("accueil");
         dispatcher.forward(request, response);
