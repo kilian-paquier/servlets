@@ -2,6 +2,7 @@ package com.servlet;
 
 import com.manager.Manager;
 import com.model.Candidate;
+import com.model.Voter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,13 +43,6 @@ public class VoteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Candidate> candidateList = Manager.getCandidateDao().findAll();
-        if (candidateList == null)
-            candidateList = new ArrayList<>();
-        request.setAttribute("candidateList", candidateList);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
-        dispatcher.forward(request, response);
         String type = request.getParameter("type");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -66,6 +60,10 @@ public class VoteServlet extends HttpServlet {
             }
             else
             {
+                List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+                if (candidateList == null)
+                    candidateList = new ArrayList<>();
+                request.setAttribute("candidateList", candidateList);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
                 dispatcher.forward(request, response);
             }
@@ -82,6 +80,10 @@ public class VoteServlet extends HttpServlet {
             }
             else
             {
+                List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+                if (candidateList == null)
+                    candidateList = new ArrayList<>();
+                request.setAttribute("candidateList", candidateList);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
                 dispatcher.forward(request, response);
             }

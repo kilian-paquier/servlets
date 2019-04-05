@@ -14,18 +14,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <%@ include file="nav.jsp" %>
+<jsp:useBean id="voterAccount" scope="request" type="com.model.Voter"/>
 <body>
 <div class="container border-light border rounded mt-5 pt-5 mb-5 pb-5">
     <div class="heading text-center pt-4">
         <h3 class="card-title">Ajout/Modification d'un votant</h3>
     </div>
     <form method="post" id="registerForm" action="votant" class="animated fadeIn">
-        <jsp:useBean id="voterAccount" scope="request" type="com.model.Voter"/>
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="nom" type="text" name="nom" class="form-control" <c:out
-        value="${voterAccount.getFistName()}">
+                    <input id="nom" type="text" name="nom" class="form-control"
+        value="${voterAccount.lastName}">
                     <label for="nom">Nom *</label>
                 </div>
             </div>
@@ -33,7 +33,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="prenom" type="text" name="prenom" class="form-control" value="${prenom}">
+                    <input id="prenom" type="text" name="prenom" class="form-control" value="${voterAccount.firstName}">
                     <label for="prenom">Prénom *</label>
                 </div>
             </div>
@@ -41,7 +41,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="ville" type="text" name="ville" class="form-control" value="${ville}">
+                    <input id="ville" type="text" name="ville" class="form-control" value="${voterAccount.city}">
                     <label for="ville">Ville *</label>
                 </div>
             </div>
@@ -49,7 +49,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="login" type="text" name="login" class="form-control" value="${login}">
+                    <input id="login" type="text" name="login" class="form-control" value="${voterAccount.login}">
                     <label for="login">Identifiant utilisateur *</label>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="password" type="password" name="password" class="form-control" value="${password}">
+                    <input id="password" type="password" name="password" class="form-control" value="${voterAccount.password}">
                     <label for="password">Mot de passe *</label>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="birthDate">Date de naissance *</label>
-                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="${naissance}">
+                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="${voterAccount.birthDate}">
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
-                <button class="btn btn-dark w-100" type="submit" id="btnSubmit">Créer/Modifier le votant</button>
+                <button class="btn btn-dark w-100" type="submit" id="btnSubmit" name="modify" value="${information}">Créer/Modifier le votant</button>
             </div>
         </div>
     </form>

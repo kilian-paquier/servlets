@@ -22,15 +22,23 @@ public class VoterServlet extends HttpServlet {
         String lastName = request.getParameter("nom");
         String city = request.getParameter("ville");
         String birthDay = request.getParameter("naissance");
+        String information = request.getParameter("modify");
+
 
         //modification
         if (votant != null)
         {
             Voter voter = Manager.getVoterDao().findById(1);
             request.setAttribute("voterAccount",voter);
+            request.setAttribute("information","modify");
             RequestDispatcher dispatcher = request.getRequestDispatcher("addVoter.jsp");
             dispatcher.forward(request, response);
             return;
+        }
+
+        if (!information.equals(""))
+        {
+
         }
 
         //ajout
