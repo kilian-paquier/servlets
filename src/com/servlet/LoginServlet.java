@@ -23,13 +23,10 @@ public class LoginServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-
-
-        //Regarde si les champs sont vides
-        if (!login.equals("") && !password.equals(""))
-        {
+        
+        if (!login.equals("") && !password.equals("")) {
             password = DigestUtils.sha256Hex(password);
-            String type = null;
+            String type = "";
             boolean isFound = false;
             Admin admin = null;
             Candidate candidate = null;
@@ -37,28 +34,24 @@ public class LoginServlet extends HttpServlet {
 
             if (voter == null)
                 candidate = Manager.getCandidateDao().findByLoginAndPassword(login, password);
-            else
-            {
+            else {
                 isFound = true;
                 type = "votant";
             }
 
-
-            if (candidate == null && !isFound)
-            {
+            if (candidate == null && !isFound) {
                 admin = Manager.getAdminDao().findByLoginAndPassword(login, password);
-                type = "admin";
-            }
-            else
-            {
+            } else {
                 isFound = true;
                 type = "candidat";
             }
+            
+            if (admin != null) {
+                isFound = true;
+                type = "admin";
+            }
 
-
-
-            if (isFound)
-            {
+            if (isFound) {
                 HttpSession session = request.getSession();
                 session.setAttribute("type", type);
                 session.setAttribute("login", login);
@@ -72,16 +65,12 @@ public class LoginServlet extends HttpServlet {
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
-            }
-            else
-            {
+            } else {
                 request.setAttribute("message", "Login ou mot de passe incorrect");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
                 dispatcher.forward(request, response);
             }
-        }
-        else
-        {
+        } else {
             request.setAttribute("message", "L'un des champs de connexion est vide");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);

@@ -24,9 +24,6 @@
             <p class="text-justify">Tabarnak ! Nous avons cherché partout votre page, mais elle est introuvable. Vous devez ne pas avoir les droits d'accès à cette page</p>
         </div>
         <div class="col-sm-12 col-md-5">
-            <img src="https://cdn.pixabay.com/photo/2016/11/16/14/57/no-entry-1829103_1280.png" class="img-fluid" alt="Responsive image">
-        </div>
-        <div class="col-sm-12 col-md-5">
             <a class="nav-link" href="accueil">Retour à l'accueil</a>
             <a class="nav-link" href="connexion">Retour à la page de connexion</a>
         </div>

@@ -27,11 +27,11 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <label for="selectVoter">Votant à supprimer *</label>
-                <select class="browser-default custom-select" name="votant" id="selectVoter">
+                <select class="browser-default custom-select" name="id_votant" id="selectVoter">
                     <option selected disabled value="">Choisissez un votant</option>
                     <jsp:useBean id="voterList" scope="request" type="java.util.List"/>
                     <c:forEach var="voter" items="${voterList}">
-                        <option value="${voter.getId()}">${voter.getFirstName()} + " " + ${voter.getLastName()}</option>
+                        <option value="${voter.getId()}">${voter}</option>
                     </c:forEach>
                 </select>
             </div>

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,6 @@ public class VoteServlet extends HttpServlet {
         candidate.incrementVote();
         boolean voteCommitted = Manager.getCandidateDao().saveOrUpdate(candidate);
 
-        // TODO Prendre en compte si la session a déjà voté ou non
-
         if (voteCommitted) {
             request.setAttribute("successMessage", "Votre vote pour " + candidate.toString() + " a bien été pris en compte");
             RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
@@ -43,9 +42,10 @@ public class VoteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String type = request.getParameter("type");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        HttpSession session = request.getSession();
+        String type = session.getAttribute("type").toString();
+        String login = session.getAttribute("login").toString();
+        String password = session.getAttribute("password").toString();
         boolean hasVoted;
 
         if (type.equals("candidat"))

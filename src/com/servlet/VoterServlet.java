@@ -11,102 +11,170 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class VoterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String votant = request.getParameter("votant");
+        String option = request.getParameter("Voter");
+        switch (option) {
+            case "add":
+            case "modifying":
+                addVoter(request, response);
+                break;
+            case "modify":
+                modifyVoter(request, response);
+                break;
+            case "delete":
+                deleteVoter(request, response);
+                break;
+            default: {
+                request.setAttribute("errorMessage", "Le paramètre d'ajout/modification/suppression a été modifié");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+                dispatcher.forward(request, response);
+                break;
+            }
+        }
+    }
+
+    private void deleteVoter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String option = request.getParameter("Voter");
+        String idVotant = request.getParameter("id_votant");
+
+        if (idVotant == null) {
+            List<Voter> voters = Manager.getVoterDao().findAll();
+            if (voters == null)
+                voters = new ArrayList<>();
+            request.setAttribute("voterList", voters);
+
+            request.setAttribute("errorMessage", "Veuillez saisir le votant à modifier");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        boolean deleted = Manager.getVoterDao().delete(Manager.getVoterDao().findById(Integer.valueOf(idVotant)));
+
+        List<Voter> voters = Manager.getVoterDao().findAll();
+        if (voters == null)
+            voters = new ArrayList<>();
+        request.setAttribute("voterList", voters);
+
+        if (deleted) {
+            request.setAttribute("successMessage", "Le votant a bien été supprimé");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("errorMessage", "Le votant n'a pas pu être supprimé");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    private void modifyVoter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idVotant = request.getParameter("id_votant");
+
+        if (idVotant == null) {
+            List<Voter> voters = Manager.getVoterDao().findAll();
+            if (voters == null)
+                voters = new ArrayList<>();
+            request.setAttribute("voterList", voters);
+
+            request.setAttribute("errorMessage", "Veuillez saisir le votant à modifier");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("modifyVoter.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        Voter voter = Manager.getVoterDao().findById(Integer.valueOf(idVotant));
+        request.setAttribute("voterAccount", voter);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("addVoter.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void addVoter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String option = request.getParameter("Voter");
+        String oldId = request.getParameter("id_voter");
+        String lastName = request.getParameter("nom");
+        String firstName = request.getParameter("prenom");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String firstName = request.getParameter("prenom");
-        String lastName = request.getParameter("nom");
         String city = request.getParameter("ville");
-        String birthDay = request.getParameter("naissance");
-        String information = request.getParameter("modify");
+        String birthDate = request.getParameter("naissance");
 
-
-        //modification
-        if (votant != null)
-        {
-            Voter voter = Manager.getVoterDao().findById(1);
-            request.setAttribute("voterAccount",voter);
-            request.setAttribute("information","modify");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addVoter.jsp");
+        if (lastName.equals("") || firstName.equals("") || login.equals("") || (option.equals("add") && (password == null || password.equals(""))) || city.equals("") || birthDate.equals("")) {
+            request.setAttribute("errorMessage", "L'un des champs d'enregistrement est vide");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
             dispatcher.forward(request, response);
             return;
         }
 
-        if (!information.equals(""))
-        {
-            Voter voter = new Voter();
-            voter.setCity(city);
-            voter.setFirstName(firstName);
-            voter.setLastName(lastName);
-            {
-                int year = Integer.parseInt(birthDay.split("-")[0]);
-                int month = Integer.parseInt(birthDay.split("-")[1]);
-                int day = Integer.parseInt(birthDay.split("-")[2]);
-                voter.setBirthDate(LocalDate.of(year, month, day));
-            }
+        Voter voter;
 
-            boolean isModified = Manager.getVoterDao().saveOrUpdate(voter);
-
-            if (isModified)
-            {
-
-            }
-            else
-            {
-
-            }
-
+        if (option.equals("add")) {
+            voter = new Voter();
+            password = DigestUtils.sha256Hex(password);
+            voter.setPassword(password);
+        } else {
+            voter = Manager.getVoterDao().findById(Integer.valueOf(oldId));
         }
 
-        //ajout
-        if (login.equals("") || password.equals("") || firstName.equals("") || lastName.equals("") || city.equals("") || birthDay.equals(""))
-        {
-            request.setAttribute("message", "L'un des champs de l'enregistrement est vide");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addVoter.jsp");
-            dispatcher.forward(request, response);
-            return;
-        }
-
-        Voter voter = new Voter();
-        voter.setCity(city);
-        voter.setFirstName(firstName);
         voter.setLastName(lastName);
+        voter.setFirstName(firstName);
         voter.setLogin(login);
-        voter.setPassword(DigestUtils.sha256Hex(password));
-        voter.setVote(false);
+        voter.setCity(city);
 
         {
-            int year = Integer.parseInt(birthDay.split("-")[0]);
-            int month = Integer.parseInt(birthDay.split("-")[1]);
-            int day = Integer.parseInt(birthDay.split("-")[2]);
+            int year = Integer.parseInt(birthDate.split("-")[0]);
+            int month = Integer.parseInt(birthDate.split("-")[1]);
+            int day = Integer.parseInt(birthDate.split("-")[2]);
             voter.setBirthDate(LocalDate.of(year, month, day));
         }
 
-        boolean isCreate = Manager.getVoterDao().saveOrUpdate(voter);
+        boolean inserted = Manager.getVoterDao().saveOrUpdate(voter);
 
-        if (isCreate)
-        {
-            request.setAttribute("registerSuccess", "Inscription réussie, veuillez vous connecter");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addVoter.jsp");
+        List<Voter> voters = Manager.getVoterDao().findAll();
+        if (voters == null)
+            voters = new ArrayList<>();
+        request.setAttribute("voterList", voters);
+
+        if (inserted && option.equals("add")) {
+            request.setAttribute("successMessage", "L'enregistrement du compte votant a réussi");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+            dispatcher.forward(request, response);
+        } else if (inserted && option.equals("modifying")) {
+            request.setAttribute("successMessage", "La modification du compte votant a réussi");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("modifyVoter.jsp");
+            dispatcher.forward(request, response);
+        } else if (option.equals("add")) {
+            request.setAttribute("errorMessage", "L'enregistrement du compte votant n'a pas réussi");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("errorMessage", "La modification du compte votant n'a pas réussi");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("modifyVoter.jsp");
             dispatcher.forward(request, response);
         }
-        else
-        {
-            request.setAttribute("message", "L'enregistrement de votre compte voteur n'a pas réussi");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addVoter.jsp");
-            dispatcher.forward(request, response);
-        }
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String option = request.getParameter("Voter");
-        RequestDispatcher dispatcher = request.getRequestDispatcher(option+"Voter.jsp");
+
+        List<Voter> voters = Manager.getVoterDao().findAll();
+        if (voters == null)
+            voters = new ArrayList<>();
+        request.setAttribute("voterList", voters);
+
+        if (option.equals("modifying")) {
+            request.setAttribute("option", "modifying");
+            modifyVoter(request, response);
+            return;
+        }
+
+        request.setAttribute("option", "add");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(option + "Voter.jsp");
         dispatcher.forward(request, response);
     }
 }
