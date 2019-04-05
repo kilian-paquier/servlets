@@ -38,7 +38,12 @@ public class VoterServlet extends HttpServlet {
 
         if (!information.equals(""))
         {
-
+            Voter voter = new Voter();
+            voter.setCity(city);
+            voter.setFirstName(firstName);
+            voter.setLastName(lastName);
+            voter.setLogin(login);
+            voter.setPassword(DigestUtils.sha256Hex(password));
         }
 
         //ajout
