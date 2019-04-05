@@ -42,8 +42,24 @@ public class VoterServlet extends HttpServlet {
             voter.setCity(city);
             voter.setFirstName(firstName);
             voter.setLastName(lastName);
-            voter.setLogin(login);
-            voter.setPassword(DigestUtils.sha256Hex(password));
+            {
+                int year = Integer.parseInt(birthDay.split("-")[0]);
+                int month = Integer.parseInt(birthDay.split("-")[1]);
+                int day = Integer.parseInt(birthDay.split("-")[2]);
+                voter.setBirthDate(LocalDate.of(year, month, day));
+            }
+
+            boolean isModified = Manager.getVoterDao().saveOrUpdate(voter);
+
+            if (isModified)
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         //ajout
