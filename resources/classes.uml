@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1162.5677083333335" y="403.0">com.dao.AdminDao</node>
+    <node x="747.5620637464385" y="403.0">com.dao.ResultDao</node>
+    <node x="1677.9801460113956" y="785.0">com.servlet.RegisterServlet</node>
+    <node x="0.0" y="942.0">com.filter.CandidateFilter</node>
+    <node x="161.5166043447291" y="242.0">com.model.Candidate</node>
+    <node x="1146.690518162393" y="785.0">com.servlet.LoginServlet</node>
+    <node x="1617.3745637464385" y="0.0">com.model.User</node>
+    <node x="1298.5677083333335" y="403.0">com.dao.VoterDao</node>
+    <node x="219.0" y="942.0">com.filter.PartyFilter</node>
+    <node x="567.3177083333334" y="242.0">com.daoInterface.ResultDaoInterface</node>
+    <node x="961.6905181623928" y="785.0">com.servlet.WelcomeServlet</node>
+    <node x="402.0" y="942.0">com.filter.VoterFilter</node>
+    <node x="1303.3177083333335" y="242.0">com.model.Admin</node>
+    <node x="585.0" y="942.0">com.filter.VoteFilter</node>
+    <node x="0.0" y="785.0">com.servlet.PartyServlet</node>
+    <node x="871.8051014957261" y="81.0">com.daoInterface.DaoInterface</node>
+    <node x="1653.4370637464385" y="81.0">com.model.Voter</node>
+    <node x="378.0" y="785.0">com.servlet.HomeServlet</node>
+    <node x="997.3177083333333" y="403.0">com.dao.PartyDao</node>
+    <node x="790.6905181623928" y="785.0">com.dao.CandidateDao</node>
+    <node x="791.3177083333334" y="242.0">com.daoInterface.PartyDaoInterface</node>
+    <node x="1006.3177083333334" y="242.0">com.daoInterface.UserDaoInterface</node>
+    <node x="113.80132656695127" y="81.0">com.model.Party</node>
+    <node x="1875.9801460113956" y="785.0">com.servlet.VoterServlet</node>
+    <node x="1084.5655181623927" y="544.0">com.manager.Manager</node>
+    <node x="1313.690518162393" y="785.0">com.servlet.VoteServlet</node>
+    <node x="172.0" y="785.0">com.servlet.CandidateServlet</node>
+    <node x="304.0" y="866.0">com.servlet.ResultsServlet</node>
+    <node x="223.80132656695127" y="81.0">com.model.Result</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.servlet.VoteServlet" target="com.manager.Manager">
+      <point x="0.0" y="-15.5" />
+      <point x="1382.690518162393" y="615.0" />
+      <point x="1169.2738514957261" y="615.0" />
+      <point x="31.20833333333337" y="15.5" />
+    </edge>
+    <edge source="com.dao.AdminDao" target="com.model.Admin">
+      <point x="29.0" y="-15.5" />
+      <point x="1249.5677083333335" y="383.0" />
+      <point x="1324.8177083333335" y="383.0" />
+      <point x="-21.5" y="15.5" />
+    </edge>
+    <edge source="com.servlet.ResultsServlet" target="com.model.Candidate">
+      <point x="-41.25" y="-15.5" />
+      <point x="345.25" y="841.0" />
+      <point x="161.5" y="841.0" />
+      <point x="161.5" y="383.0" />
+      <point x="169.3291043447291" y="383.0" />
+      <point x="-54.6875" y="15.5" />
+    </edge>
+    <edge source="com.servlet.WelcomeServlet" target="com.manager.Manager">
+      <point x="1.1368683772161603E-13" y="-15.5" />
+      <point x="1044.190518162393" y="765.0" />
+      <point x="1151.4405181623927" y="765.0" />
+      <point x="13.374999999999886" y="15.5" />
+    </edge>
+    <edge source="com.model.Admin" target="com.model.User">
+      <point x="0.0" y="-15.5" />
+      <point x="1346.3177083333335" y="56.0" />
+      <point x="1637.6245637464385" y="56.0" />
+      <point x="-20.25" y="15.5" />
+    </edge>
+    <edge source="com.servlet.CandidateServlet" target="com.model.Candidate">
+      <point x="-37.200000000000045" y="-15.5" />
+      <point x="227.79999999999995" y="675.0" />
+      <point x="189.02224893162395" y="675.0" />
+      <point x="189.02224893162395" y="383.0" />
+      <point x="184.9541043447291" y="383.0" />
+      <point x="-39.0625" y="15.5" />
+    </edge>
+    <edge source="com.servlet.HomeServlet" target="com.model.Candidate">
+      <point x="-34.5" y="-15.5" />
+      <point x="412.5" y="675.0" />
+      <point x="320.02224893162395" y="675.0" />
+      <point x="320.02224893162395" y="373.0" />
+      <point x="216.2041043447291" y="373.0" />
+      <point x="-7.8125" y="15.5" />
+    </edge>
+    <edge source="com.servlet.VoteServlet" target="com.model.Voter">
+      <point x="46.0" y="-15.5" />
+      <point x="1428.690518162393" y="765.0" />
+      <point x="1589.9909989316238" y="765.0" />
+      <point x="1589.9909989316238" y="222.0" />
+      <point x="1692.8120637464385" y="222.0" />
+      <point x="-5.625" y="15.5" />
+    </edge>
+    <edge source="com.model.Candidate" target="com.model.Voter">
+      <point x="55.55555555555554" y="-15.5" />
+      <point x="279.57215990028465" y="192.0" />
+      <point x="1659.0620637464385" y="192.0" />
+      <point x="-39.375" y="15.5" />
+    </edge>
+    <edge source="com.dao.PartyDao" target="com.model.Party">
+      <point x="-28.999999999999886" y="-15.5" />
+      <point x="1026.3177083333335" y="303.0" />
+      <point x="297.0166043447291" y="303.0" />
+      <point x="297.0166043447291" y="152.0" />
+      <point x="198.17632656695127" y="152.0" />
+      <point x="39.375" y="15.5" />
+    </edge>
+    <edge source="com.daoInterface.PartyDaoInterface" target="com.daoInterface.DaoInterface">
+      <point x="0.0" y="-15.5" />
+      <point x="888.8177083333334" y="182.0" />
+      <point x="947.3051014957261" y="182.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.daoInterface.ResultDaoInterface" target="com.daoInterface.DaoInterface">
+      <point x="0.0" y="-15.5" />
+      <point x="669.3177083333334" y="172.0" />
+      <point x="896.9717681623929" y="172.0" />
+      <point x="-50.33333333333337" y="15.5" />
+    </edge>
+    <edge source="com.model.Candidate" target="com.model.Party">
+      <point x="-55.55555555555554" y="-15.5" />
+      <point x="168.46104878917356" y="222.0" />
+      <point x="153.17632656695127" y="222.0" />
+      <point x="-5.625" y="15.5" />
+    </edge>
+    <edge source="com.servlet.LoginServlet" target="com.model.Voter">
+      <point x="55.125" y="-15.5" />
+      <point x="1275.315518162393" y="755.0" />
+      <point x="1507.8034989316238" y="755.0" />
+      <point x="1507.8034989316238" y="212.0" />
+      <point x="1681.5620637464385" y="212.0" />
+      <point x="-16.875" y="15.5" />
+    </edge>
+    <edge source="com.dao.AdminDao" target="com.manager.Manager">
+      <point x="43.5" y="15.5" />
+      <point x="1264.0677083333335" y="484.0" />
+      <point x="1161.471768162393" y="484.0" />
+      <point x="23.406250000000114" y="-15.5" />
+    </edge>
+    <edge source="com.servlet.RegisterServlet" target="com.model.Voter">
+      <point x="0.0" y="-15.5" />
+      <point x="1766.9801460113956" y="765.0" />
+      <point x="1791.1468126780624" y="765.0" />
+      <point x="1791.1468126780624" y="222.0" />
+      <point x="1704.0620637464385" y="222.0" />
+      <point x="5.625" y="15.5" />
+    </edge>
+    <edge source="com.manager.Manager" target="com.dao.CandidateDao">
+      <point x="-4.458333333333371" y="15.5" />
+      <point x="1133.6071848290594" y="745.0" />
+      <point x="903.9405181623928" y="745.0" />
+      <point x="37.75" y="-15.5" />
+    </edge>
+    <edge source="com.model.Result" target="com.model.Candidate">
+      <point x="-8.166666666666742" y="15.5" />
+      <point x="264.63465990028453" y="172.0" />
+      <point x="251.79438212250693" y="172.0" />
+      <point x="27.77777777777783" y="-15.5" />
+    </edge>
+    <edge source="com.servlet.PartyServlet" target="com.manager.Manager">
+      <point x="50.333333333333314" y="-15.5" />
+      <point x="125.83333333333326" y="695.0" />
+      <point x="1089.0238514957261" y="695.0" />
+      <point x="-49.04166666666663" y="15.5" />
+    </edge>
+    <edge source="com.dao.ResultDao" target="com.model.Result">
+      <point x="0.0" y="-15.5" />
+      <point x="810.0620637464385" y="323.0" />
+      <point x="556.8177083333334" y="323.0" />
+      <point x="556.8177083333334" y="132.0" />
+      <point x="313.63465990028453" y="132.0" />
+      <point x="40.83333333333326" y="15.5" />
+    </edge>
+    <edge source="com.servlet.VoterServlet" target="com.model.Voter">
+      <point x="-2.2737367544323206E-13" y="-15.5" />
+      <point x="1951.4801460113954" y="765.0" />
+      <point x="1971.1468126780624" y="765.0" />
+      <point x="1971.1468126780624" y="202.0" />
+      <point x="1726.5620637464385" y="202.0" />
+      <point x="28.125" y="15.5" />
+    </edge>
+    <edge source="com.dao.ResultDao" target="com.daoInterface.ResultDaoInterface">
+      <point x="41.66666666666663" y="-15.5" />
+      <point x="851.7287304131052" y="313.0" />
+      <point x="669.3177083333334" y="313.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.servlet.HomeServlet" target="com.manager.Manager">
+      <point x="34.5" y="-15.5" />
+      <point x="481.5" y="715.0" />
+      <point x="1106.8571848290594" y="715.0" />
+      <point x="-31.20833333333337" y="15.5" />
+    </edge>
+    <edge source="com.servlet.LoginServlet" target="com.model.Candidate">
+      <point x="-55.125" y="-15.5" />
+      <point x="1165.065518162393" y="645.0" />
+      <point x="460.11979166666674" y="645.0" />
+      <point x="460.11979166666674" y="353.0" />
+      <point x="247.4541043447291" y="353.0" />
+      <point x="23.4375" y="15.5" />
+    </edge>
+    <edge source="com.manager.Manager" target="com.dao.PartyDao">
+      <point x="-23.406249999999886" y="-15.5" />
+      <point x="1114.659268162393" y="484.0" />
+      <point x="1011.8177083333333" y="484.0" />
+      <point x="-43.5" y="15.5" />
+    </edge>
+    <edge source="com.dao.ResultDao" target="com.manager.Manager">
+      <point x="46.875" y="15.5" />
+      <point x="856.9370637464385" y="494.0" />
+      <point x="1107.971768162393" y="494.0" />
+      <point x="-30.093749999999886" y="-15.5" />
+    </edge>
+    <edge source="com.dao.CandidateDao" target="com.model.Candidate">
+      <point x="-62.916666666666686" y="-15.5" />
+      <point x="803.2738514957261" y="665.0" />
+      <point x="336.33129451566947" y="665.0" />
+      <point x="336.33129451566947" y="363.0" />
+      <point x="231.8291043447291" y="363.0" />
+      <point x="7.8125" y="15.5" />
+    </edge>
+    <edge source="com.dao.VoterDao" target="com.manager.Manager">
+      <point x="43.5" y="15.5" />
+      <point x="1400.0677083333335" y="524.0" />
+      <point x="1188.221768162393" y="524.0" />
+      <point x="50.156250000000114" y="-15.5" />
+    </edge>
+    <edge source="com.servlet.CandidateServlet" target="com.manager.Manager">
+      <point x="74.4" y="-15.5" />
+      <point x="339.4" y="705.0" />
+      <point x="1097.9405181623927" y="705.0" />
+      <point x="-40.125" y="15.5" />
+    </edge>
+    <edge source="com.servlet.VoteServlet" target="com.model.Candidate">
+      <point x="-46.0" y="-15.5" />
+      <point x="1336.690518162393" y="625.0" />
+      <point x="471.11979166666674" y="625.0" />
+      <point x="471.11979166666674" y="343.0" />
+      <point x="263.0791043447291" y="343.0" />
+      <point x="39.0625" y="15.5" />
+    </edge>
+    <edge source="com.manager.Manager" target="com.dao.ResultDao">
+      <point x="-36.781249999999886" y="-15.5" />
+      <point x="1101.284268162393" y="504.0" />
+      <point x="825.6870637464385" y="504.0" />
+      <point x="15.625" y="15.5" />
+    </edge>
+    <edge source="com.daoInterface.UserDaoInterface" target="com.daoInterface.DaoInterface">
+      <point x="0.0" y="-15.5" />
+      <point x="1099.3177083333335" y="182.0" />
+      <point x="997.6384348290596" y="182.0" />
+      <point x="50.33333333333337" y="15.5" />
+    </edge>
+    <edge source="com.dao.VoterDao" target="com.daoInterface.UserDaoInterface">
+      <point x="-29.0" y="-15.5" />
+      <point x="1327.5677083333335" y="373.0" />
+      <point x="1161.3177083333335" y="373.0" />
+      <point x="62.0" y="15.5" />
+    </edge>
+    <edge source="com.servlet.PartyServlet" target="com.model.Party">
+      <point x="-50.33333333333337" y="-15.5" />
+      <point x="25.16666666666663" y="765.0" />
+      <point x="64.5" y="765.0" />
+      <point x="64.5" y="202.0" />
+      <point x="119.42632656695127" y="202.0" />
+      <point x="-39.375" y="15.5" />
+    </edge>
+    <edge source="com.dao.CandidateDao" target="com.manager.Manager">
+      <point x="-12.583333333333371" y="-15.5" />
+      <point x="853.6071848290594" y="725.0" />
+      <point x="1115.7738514957261" y="725.0" />
+      <point x="-22.29166666666663" y="15.5" />
+    </edge>
+    <edge source="com.dao.ResultDao" target="com.model.Candidate">
+      <point x="-41.66666666666663" y="-15.5" />
+      <point x="768.3953970797719" y="333.0" />
+      <point x="278.7041043447291" y="333.0" />
+      <point x="54.6875" y="15.5" />
+    </edge>
+    <edge source="com.model.Voter" target="com.model.User">
+      <point x="0.0" y="-15.5" />
+      <point x="1698.4370637464385" y="56.0" />
+      <point x="1678.1245637464385" y="56.0" />
+      <point x="20.25" y="15.5" />
+    </edge>
+    <edge source="com.dao.PartyDao" target="com.manager.Manager">
+      <point x="43.500000000000114" y="15.5" />
+      <point x="1098.8177083333335" y="454.0" />
+      <point x="1134.721768162393" y="454.0" />
+      <point x="-3.3437499999998863" y="-15.5" />
+    </edge>
+    <edge source="com.dao.PartyDao" target="com.daoInterface.PartyDaoInterface">
+      <point x="29.000000000000114" y="-15.5" />
+      <point x="1084.3177083333335" y="293.0" />
+      <point x="888.8177083333334" y="293.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.servlet.ResultsServlet" target="com.dao.CandidateDao">
+      <point x="41.25" y="-15.5" />
+      <point x="427.75" y="841.0" />
+      <point x="866.1905181623928" y="841.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.model.Candidate" target="com.model.Result">
+      <point x="13.888888888888914" y="-15.5" />
+      <point x="237.90549323361802" y="162.0" />
+      <point x="248.30132656695127" y="162.0" />
+      <point x="-24.5" y="15.5" />
+    </edge>
+    <edge source="com.manager.Manager" target="com.dao.VoterDao">
+      <point x="36.781250000000114" y="-15.5" />
+      <point x="1174.846768162393" y="504.0" />
+      <point x="1342.0677083333335" y="504.0" />
+      <point x="-14.5" y="15.5" />
+    </edge>
+    <edge source="com.servlet.VoterServlet" target="com.manager.Manager">
+      <point x="-50.333333333333485" y="-15.5" />
+      <point x="1901.1468126780621" y="595.0" />
+      <point x="1187.1071848290594" y="595.0" />
+      <point x="49.04166666666663" y="15.5" />
+    </edge>
+    <edge source="com.dao.AdminDao" target="com.daoInterface.UserDaoInterface">
+      <point x="-29.0" y="-15.5" />
+      <point x="1191.5677083333335" y="383.0" />
+      <point x="1099.3177083333335" y="383.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.servlet.LoginServlet" target="com.manager.Manager">
+      <point x="-18.375" y="-15.5" />
+      <point x="1201.815518162393" y="635.0" />
+      <point x="1160.3571848290594" y="635.0" />
+      <point x="22.29166666666663" y="15.5" />
+    </edge>
+    <edge source="com.servlet.LoginServlet" target="com.model.Admin">
+      <point x="18.375" y="-15.5" />
+      <point x="1238.565518162393" y="745.0" />
+      <point x="1496.8034989316238" y="745.0" />
+      <point x="1496.8034989316238" y="373.0" />
+      <point x="1367.8177083333335" y="373.0" />
+      <point x="21.5" y="15.5" />
+    </edge>
+    <edge source="com.servlet.CandidateServlet" target="com.model.Party">
+      <point x="-74.39999999999998" y="-15.5" />
+      <point x="190.60000000000002" y="685.0" />
+      <point x="118.5" y="685.0" />
+      <point x="118.5" y="222.0" />
+      <point x="141.92632656695127" y="222.0" />
+      <point x="-16.875" y="15.5" />
+    </edge>
+    <edge source="com.manager.Manager" target="com.dao.AdminDao">
+      <point x="10.031250000000114" y="-15.5" />
+      <point x="1148.096768162393" y="464.0" />
+      <point x="1206.0677083333335" y="464.0" />
+      <point x="-14.5" y="15.5" />
+    </edge>
+    <edge source="com.dao.VoterDao" target="com.model.Voter">
+      <point x="29.0" y="-15.5" />
+      <point x="1385.5677083333335" y="383.0" />
+      <point x="1430.3177083333335" y="383.0" />
+      <point x="1430.3177083333335" y="202.0" />
+      <point x="1670.3120637464385" y="202.0" />
+      <point x="-28.125" y="15.5" />
+    </edge>
+    <edge source="com.model.Party" target="com.model.Candidate">
+      <point x="16.875" y="15.5" />
+      <point x="175.67632656695127" y="202.0" />
+      <point x="196.23882656695127" y="202.0" />
+      <point x="-27.77777777777783" y="-15.5" />
+    </edge>
+    <edge source="com.dao.CandidateDao" target="com.daoInterface.UserDaoInterface">
+      <point x="-37.75" y="-15.5" />
+      <point x="828.4405181623928" y="655.0" />
+      <point x="737.0620637464385" y="655.0" />
+      <point x="737.0620637464385" y="383.0" />
+      <point x="1037.3177083333335" y="383.0" />
+      <point x="-62.0" y="15.5" />
+    </edge>
+    <edge source="com.servlet.RegisterServlet" target="com.manager.Manager">
+      <point x="-59.33333333333326" y="-15.5" />
+      <point x="1707.6468126780624" y="605.0" />
+      <point x="1178.1905181623927" y="605.0" />
+      <point x="40.124999999999886" y="15.5" />
+    </edge>
+    <edge source="com.servlet.CandidateServlet" target="com.model.Result">
+      <point x="37.200000000000045" y="-15.5" />
+      <point x="302.20000000000005" y="685.0" />
+      <point x="509.31770833333337" y="685.0" />
+      <point x="509.31770833333337" y="142.0" />
+      <point x="297.3013265669513" y="142.0" />
+      <point x="24.5" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6262823644357597" x="1013.4999999999999" y="486.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
