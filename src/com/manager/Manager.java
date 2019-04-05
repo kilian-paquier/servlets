@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 public class Manager {
+    private static Manager manager = null;
+
     private static SessionFactory sessionFactory;
 
     private static Session session;
@@ -24,7 +26,7 @@ public class Manager {
 
     private static VoterDao voterDao;
 
-    public Manager() {
+    private Manager() {
         Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
         sessionFactory = configuration.buildSessionFactory();
         session = sessionFactory.openSession();
@@ -41,6 +43,12 @@ public class Manager {
         if (transaction == null || !transaction.isActive())
             transaction = session.beginTransaction();
 
+    }
+
+    public static Manager getManager() {
+        if (manager == null)
+            manager = new Manager();
+        return manager;
     }
 
     public static void commitTransaction() {
