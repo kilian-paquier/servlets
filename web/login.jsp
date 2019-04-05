@@ -66,7 +66,7 @@
         </div>
         <div class="text-center mt-2 pb-3 animated fadeIn">
             <p>Pas encore inscrit ?
-                <a href="register.jsp">S'enregistrer</a>
+                <a href="enregistrement">S'enregistrer</a>
             </p>
         </div>
     </form>

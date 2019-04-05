@@ -1,3 +1,5 @@
+<jsp:useBean id="message" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="candidateList" scope="request" type="java.util.List"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -37,7 +39,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <jsp:useBean id="candidateList" scope="request" type="java.util.List"/>
                 <c:forEach var="candidate" items="${candidateList}">
                     <tr>
                         <td><c:out
