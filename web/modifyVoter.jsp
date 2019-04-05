@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -26,10 +27,15 @@
                     <label for="votant">Votant à modifier *</label>
                     <select id="votant" class="custom-select default-browser" name="votant">
                         <option selected disabled>Sélectionnez un votant</option>
+                        <jsp:useBean id="voterList" scope="request" type="java.util.List"/>
+                        <c:forEach var="voter" items="${voterList}">
+                            <option value="${voter.getId()}">${voter.getFirstName()} + " " + ${voter.getLastName()}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <button class="btn btn-dark w-100" type="submit" id="btnSubmit">Modifier le votant</button>

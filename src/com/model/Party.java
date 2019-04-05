@@ -1,19 +1,26 @@
 package com.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Party")
 public class Party {
 
-    private String partyName;
-    private String headquarters;
-    private int nbCandidates;
-    private List<Candidate> candidates;
-
     @Id
-    @Column(name = "partyName", nullable = false, unique = true)
+    @Column(name = "party_name", nullable = false, unique = true)
+    private String partyName;
+
+    @Column(name = "headquarters", nullable = false)
+    private String headquarters;
+
+    @Column(name = "nb_candidates", nullable = false)
+    private int nbCandidates = 0;
+
+    @OneToMany(mappedBy = "party")
+    private List<Candidate> candidates = new ArrayList<>();
+
     public String getPartyName() {
         return partyName;
     }
@@ -22,7 +29,6 @@ public class Party {
         this.partyName = partyName;
     }
 
-    @Column(name = "Headquarters", nullable = false)
     public String getHeadquarters() {
         return headquarters;
     }
@@ -31,7 +37,6 @@ public class Party {
         this.headquarters = headquarters;
     }
 
-    @Column(name = "NbCandidates", nullable = false)
     public int getNbCandidates() {
         return nbCandidates;
     }
@@ -40,12 +45,16 @@ public class Party {
         this.nbCandidates = nbCandidates;
     }
 
-    @OneToMany(mappedBy = "party")
     public List<Candidate> getCandidates() {
         return candidates;
     }
 
     public void setCandidates(List<Candidate> candidates) {
         this.candidates = candidates;
+    }
+
+    void addCandidate(Candidate candidate) {
+        this.candidates.add(candidate);
+        this.nbCandidates++;
     }
 }

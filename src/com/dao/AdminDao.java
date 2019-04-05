@@ -3,8 +3,8 @@ package com.dao;
 import com.daoInterface.UserDaoInterface;
 import com.manager.Manager;
 import com.model.Admin;
-import org.hibernate.query.Query;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class AdminDao implements UserDaoInterface<Admin, Integer> {
@@ -18,20 +18,28 @@ public class AdminDao implements UserDaoInterface<Admin, Integer> {
 
     public Admin findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Query query = Manager.getSession().createQuery("FROM Admin WHERE login = :login AND password = :password");
+        TypedQuery<Admin> query = Manager.getSession().createQuery("FROM Admin WHERE login = :login AND password = :password", Admin.class);
         query.setParameter("login", login);
         query.setParameter("password", password);
-        Admin admin = (Admin) query.getResultList().get(0);
+        List<Admin> admins = query.getResultList();
         Manager.commitTransaction();
-        return admin;
+        if (admins.size() == 0)
+            return null;
+        else
+            return admins.get(0);
     }
 
-    public void delete(Admin entity) {
-        Manager.beginTransaction();
-        if (!Manager.getSession().contains(entity))
-            Manager.getSession().merge(entity);
-        Manager.getSession().delete(entity);
-        Manager.commitTransaction();
+    public boolean delete(Admin entity) {
+        try {
+            Manager.beginTransaction();
+            if (!Manager.getSession().contains(entity))
+                Manager.getSession().merge(entity);
+            Manager.getSession().delete(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")

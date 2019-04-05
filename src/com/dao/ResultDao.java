@@ -9,12 +9,17 @@ import java.util.List;
 
 public class ResultDao implements ResultDaoInterface<Result, Candidate> {
 
-    public void delete(Result entity) {
-        Manager.beginTransaction();
-        if(!Manager.getSession().contains(entity))
-            Manager.getSession().merge(entity);
-        Manager.getSession().delete(entity);
-        Manager.commitTransaction();
+    public boolean delete(Result entity) {
+        try {
+            Manager.beginTransaction();
+            if (!Manager.getSession().contains(entity))
+                Manager.getSession().merge(entity);
+            Manager.getSession().delete(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")

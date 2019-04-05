@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 public class Manager {
     private static SessionFactory sessionFactory;
@@ -37,7 +38,9 @@ public class Manager {
     }
 
     public static void beginTransaction() {
-        transaction = session.beginTransaction();
+        if (transaction == null || !transaction.isActive())
+            transaction = session.beginTransaction();
+
     }
 
     public static void commitTransaction() {

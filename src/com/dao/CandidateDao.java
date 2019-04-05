@@ -3,8 +3,8 @@ package com.dao;
 import com.daoInterface.UserDaoInterface;
 import com.manager.Manager;
 import com.model.Candidate;
-import org.hibernate.query.Query;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CandidateDao implements UserDaoInterface<Candidate, Integer> {
@@ -18,21 +18,29 @@ public class CandidateDao implements UserDaoInterface<Candidate, Integer> {
 
     public Candidate findByLoginAndPassword(String login, String password) {
         Manager.beginTransaction();
-        Query query = Manager.getSession().createQuery("FROM Candidate WHERE login = :login AND password = :password");
+
+        TypedQuery<Candidate> query = Manager.getSession().createQuery("FROM Candidate WHERE login = :login AND password = :password", Candidate.class);
         query.setParameter("login", login);
         query.setParameter("password", password);
-        Candidate candidate = (Candidate) query.getResultList().get(0);
+        List<Candidate> candidates = query.getResultList();
         Manager.commitTransaction();
-        return candidate;
+        if (candidates.size() == 0)
+            return null;
+        else
+            return candidates.get(0);
     }
 
-    public void delete(Candidate entity) {
-        Manager.beginTransaction();
-        if (!Manager.getSession().contains(entity))
-            Manager.getSession().merge(entity); // On récupère l'objet s'il n'appartient pas à la session
-        Manager.getSession().delete(entity);
-
-        Manager.commitTransaction();
+    public boolean delete(Candidate entity) {
+        try {
+            Manager.beginTransaction();
+            if (!Manager.getSession().contains(entity))
+                Manager.getSession().merge(entity);
+            Manager.getSession().delete(entity);
+            Manager.commitTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")

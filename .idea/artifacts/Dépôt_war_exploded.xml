@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="Dépôt:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/Dépôt_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="Dépôt/web/Web" />
+      <element id="javaee-facet-resources" facet="Votes/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Dépôt" />
+          <element id="module-output" name="Votes" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Hibernate 5.4.1-5.4.1" />

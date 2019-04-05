@@ -10,14 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String firstName = request.getParameter("prenom");
@@ -25,9 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String city = request.getParameter("ville");
         String birthDay = request.getParameter("naissance");
 
-        //Regarde si les champs sont vides
-        if (login.equals("") || password.equals("") || firstName.equals("") || lastName.equals("") || city.equals("") || birthDay.equals(""))
-        {
+        if (login.equals("") || password.equals("") || firstName.equals("") || lastName.equals("") || city.equals("") || birthDay.equals("")) {
             request.setAttribute("message", "L'un des champs de l'enregistrement est vide");
             RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
@@ -49,16 +45,13 @@ public class RegisterServlet extends HttpServlet {
             voter.setBirthDate(LocalDate.of(year, month, day));
         }
 
-        boolean isCreate = Manager.getVoterDao().saveOrUpdate(voter);
+        boolean created = Manager.getVoterDao().saveOrUpdate(voter);
 
-        if (isCreate)
-        {
+        if (created) {
             request.setAttribute("registerSuccess", "Inscription réussie, veuillez vous connecter");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             request.setAttribute("message", "L'enregistrement de votre compte voteur n'a pas réussi");
             RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
