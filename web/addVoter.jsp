@@ -19,11 +19,13 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Ajout/Modification d'un votant</h3>
     </div>
-    <form method="post" id="registerForm" action="" class="animated fadeIn">
+    <form method="post" id="registerForm" action="votant" class="animated fadeIn">
+        <jsp:useBean id="voterAccount" scope="request" type="com.model.Voter"/>
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="nom" type="text" name="nom" class="form-control">
+                    <input id="nom" type="text" name="nom" class="form-control" <c:out
+        value="${voterAccount.getFistName()}">
                     <label for="nom">Nom *</label>
                 </div>
             </div>
@@ -31,7 +33,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="prenom" type="text" name="prenom" class="form-control">
+                    <input id="prenom" type="text" name="prenom" class="form-control" value="${prenom}">
                     <label for="prenom">Prénom *</label>
                 </div>
             </div>
@@ -39,7 +41,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="ville" type="text" name="ville" class="form-control">
+                    <input id="ville" type="text" name="ville" class="form-control" value="${ville}">
                     <label for="ville">Ville *</label>
                 </div>
             </div>
@@ -47,7 +49,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="login" type="text" name="login" class="form-control">
+                    <input id="login" type="text" name="login" class="form-control" value="${login}">
                     <label for="login">Identifiant utilisateur *</label>
                 </div>
             </div>
@@ -55,7 +57,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="password" type="password" name="password" class="form-control">
+                    <input id="password" type="password" name="password" class="form-control" value="${password}">
                     <label for="password">Mot de passe *</label>
                 </div>
             </div>
@@ -64,13 +66,18 @@
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="birthDate">Date de naissance *</label>
-                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="">
+                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="${naissance}">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2" id="success">
-
+            <div class="col-12 col-lg-8 offset-lg-2 text-danger" id="error">
+                ${message}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-8 offset-lg-2 text-info" id="success">
+                ${registerSuccess}
             </div>
         </div>
         <div class="row">

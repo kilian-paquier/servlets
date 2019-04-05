@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="css/style.css" rel="stylesheet">
 <link href="lib/material-design-4.7.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="lib/material-design-4.7.1/css/mdb.min.css" rel="stylesheet">
@@ -22,6 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="accueil">Liste électorale</a>
                 </li>
+                <c:if test="${sessionScope.type == 'admin'}">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                        aria-haspopup="true"
@@ -58,17 +60,29 @@
                         </form>
                     </div>
                 </li>
+                </c:if>
+                <c:if test="${sessionScope.type == 'candidat' || sessionScope.type == 'votant'}">
                 <li class="nav-item">
                     <a class="nav-link" href="vote">Voter</a>
                 </li>
+                </c:if>
                 <li class="nav-item">
                     <a class="nav-link" href="resultats">Résultats</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
+                <c:choose>
+                <c:when test="${sessionScope.type == 'candidat' || sessionScope.type == 'votant' || sessionScope.type == 'admin'}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="connexion">Déconnexion</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
                 <li class="nav-item">
                     <a class="nav-link" href="connexion">Connexion</a>
                 </li>
+                </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </nav>

@@ -91,12 +91,39 @@
     </servlet-mapping>
 
     <filter>
-        <filter-name>f1</filter-name>
-        <filter-class>com.filter.LoginFilter</filter-class>
+        <filter-name>CandidateFilter</filter-name>
+        <filter-class>com.filter.CandidateFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>f1</filter-name>
-        <url-pattern>/login</url-pattern>
+        <filter-name>CandidateFilter</filter-name>
+        <url-pattern>/candidat</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>PartyFilter</filter-name>
+        <filter-class>com.filter.PartyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PartyFilter</filter-name>
+        <url-pattern>/parti</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>VoteFilter</filter-name>
+        <filter-class>com.filter.VoteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>VoteFilter</filter-name>
+        <url-pattern>/vote</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>VoterFilter</filter-name>
+        <filter-class>com.filter.VoterFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>VoterFilter</filter-name>
+        <url-pattern>/votant</url-pattern>
     </filter-mapping>
 
     <jsp-config>
