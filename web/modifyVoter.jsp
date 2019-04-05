@@ -20,7 +20,7 @@
     <div class="heading text-center pt-4">
         <h3 class="card-title">Modification d'un votant</h3>
     </div>
-    <form method="post" id="registerForm" action="" class="animated fadeIn">
+    <form method="post" id="registerForm" action="votant" class="animated fadeIn">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">

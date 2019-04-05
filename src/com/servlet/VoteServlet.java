@@ -2,9 +2,11 @@ package com.servlet;
 
 import com.manager.Manager;
 import com.model.Candidate;
+import com.model.Voter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,12 +43,50 @@ public class VoteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Candidate> candidateList = Manager.getCandidateDao().findAll();
-        if (candidateList == null)
-            candidateList = new ArrayList<>();
-        request.setAttribute("candidateList", candidateList);
+        String type = request.getParameter("type");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        boolean hasVoted;
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
-        dispatcher.forward(request, response);
+        if (type.equals("candidat"))
+        {
+            Candidate candidate = Manager.getCandidateDao().findByLoginAndPassword(login,password);
+            hasVoted = candidate.hasVoted();
+            if (hasVoted)
+            {
+                request.setAttribute("message", "Vous avez déjà voté");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            }
+            else
+            {
+                List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+                if (candidateList == null)
+                    candidateList = new ArrayList<>();
+                request.setAttribute("candidateList", candidateList);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
+        else {
+            Voter voter = Manager.getVoterDao().findByLoginAndPassword(login,password);
+            hasVoted = voter.hasVoted();
+
+            if (hasVoted)
+            {
+                request.setAttribute("message", "Vous avez déjà voté");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            }
+            else
+            {
+                List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+                if (candidateList == null)
+                    candidateList = new ArrayList<>();
+                request.setAttribute("candidateList", candidateList);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("vote.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
     }
 }

@@ -23,61 +23,83 @@ public class LoginServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        password = DigestUtils.sha256Hex(password);
 
-        if (login.equals("") || password.equals(""))
+
+        //Regarde si les champs sont vides
+        if (!login.equals("") && !password.equals(""))
+        {
+            password = DigestUtils.sha256Hex(password);
+            String type = null;
+            boolean isFound = false;
+            Admin admin = null;
+            Candidate candidate = null;
+            Voter voter = Manager.getVoterDao().findByLoginAndPassword(login, password);
+
+            if (voter == null)
+                candidate = Manager.getCandidateDao().findByLoginAndPassword(login, password);
+            else
+            {
+                isFound = true;
+                type = "votant";
+            }
+
+
+            if (candidate == null && !isFound)
+            {
+                admin = Manager.getAdminDao().findByLoginAndPassword(login, password);
+                type = "admin";
+            }
+            else
+            {
+                isFound = true;
+                type = "candidat";
+            }
+
+
+
+            if (isFound)
+            {
+                HttpSession session = request.getSession();
+                session.setAttribute("type", type);
+                session.setAttribute("login", login);
+                session.setAttribute("password", password);
+
+                List<Candidate> candidateList = Manager.getCandidateDao().findAll();
+                if (candidateList == null)
+                    candidateList = new ArrayList<>();
+
+                request.setAttribute("candidateList", candidateList);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            }
+            else
+            {
+                request.setAttribute("message", "Login ou mot de passe incorrect");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
+        else
         {
             request.setAttribute("message", "L'un des champs de connexion est vide");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
-            return;
         }
-
-        boolean isFound = false;
-        Admin admin = null;
-        Candidate candidate = null;
-        Voter voter = Manager.getVoterDao().findByLoginAndPassword(login, password);
-
-        if (voter == null)
-            candidate = Manager.getCandidateDao().findByLoginAndPassword(login, password);
-        else
-            isFound = true;
-
-        if (candidate == null && !isFound)
-            admin = Manager.getAdminDao().findByLoginAndPassword(login, password);
-        else
-            isFound = true;
-
-        if (admin != null)
-            isFound = true;
-
-        if (isFound)
-        {
-            HttpSession session = request.getSession();
-            session.setAttribute("login", login);
-            session.setAttribute("password", password);
-
-            List<Candidate> candidateList = Manager.getCandidateDao().findAll();
-            if (candidateList == null)
-                candidateList = new ArrayList<>();
-
-            request.setAttribute("candidateList", candidateList);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
-        }
-        else
-        {
-            request.setAttribute("message", "Login ou mot de passe incorrect");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
-        }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("message", "");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-        dispatcher.forward(request, response);
+        String type = request.getParameter("type");
+        if (type != null) {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            request.setAttribute("registerSuccess", "Déconnexion réussit");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("message", "");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }
