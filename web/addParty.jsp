@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="ville" scope="request" type="java.lang.String" class="java.lang.String"/>
 <jsp:useBean id="nom" scope="request" type="java.lang.String" class="java.lang.String"/>
 <jsp:useBean id="successMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
@@ -24,14 +25,29 @@
         <h3 class="card-title">Ajout/Modification d'un parti</h3>
     </div>
     <form method="post" action="" class="animated fadeIn">
-        <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-                <div class="md-form">
-                    <input id="nom" type="text" name="nom" class="form-control" value="${nom}">
-                    <label for="nom">Nom du parti *</label>
+        <jsp:useBean id="option" scope="request" type="java.lang.String" class="java.lang.String"/>
+        <c:choose>
+            <c:when test="${option == 'add'}">
+                <div class="row">
+                    <div class="col-12 col-lg-8 offset-lg-2">
+                        <div class="md-form">
+                            <input id="nom" type="text" name="nom" class="form-control" value="${nom}">
+                            <label for="nom">Nom du parti *</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <div class="col-12 col-lg-8 offset-lg-2">
+                        <div class="md-form">
+                            <input id="nom" type="text" name="nom" class="form-control" value="${nom}" disabled>
+                            <label for="nom">Nom du parti *</label>
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
