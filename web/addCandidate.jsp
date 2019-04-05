@@ -1,6 +1,8 @@
+<jsp:useBean id="candidate" scope="request" type="com.model.Candidate" class="com.model.Candidate"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="successMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
 <jsp:useBean id="errorMessage" scope="request" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="option" scope="request" type="java.lang.String" class="java.lang.String"/>
 <%--
   Created by IntelliJ IDEA.
   User: Kilian
@@ -26,7 +28,7 @@
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="nom" type="text" name="nom" class="form-control">
+                    <input id="nom" type="text" name="nom" class="form-control" value="${candidate.lastName}">
                     <label for="nom">Nom *</label>
                 </div>
             </div>
@@ -34,7 +36,7 @@
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="prenom" type="text" name="prenom" class="form-control">
+                    <input id="prenom" type="text" name="prenom" class="form-control" value="${candidate.firstName}">
                     <label for="prenom">Prénom *</label>
                 </div>
             </div>
@@ -42,32 +44,48 @@
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="ville" type="text" name="ville" class="form-control">
+                    <input id="ville" type="text" name="ville" class="form-control" value="${candidate.city}">
                     <label for="ville">Ville *</label>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-                <div class="md-form">
-                    <input id="login" type="text" name="login" class="form-control">
-                    <label for="login">Identifiant utilisateur *</label>
+        <c:choose>
+            <c:when test="${option == 'add'}">
+                <div class="row">
+                    <div class="col-12 col-lg-8 offset-lg-2">
+                        <div class="md-form">
+                            <input id="login" type="text" name="login" class="form-control" value="${candidate.login}">
+                            <label for="login">Identifiant utilisateur *</label>
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <div class="col-12 col-lg-8 offset-lg-2">
+                        <div class="md-form">
+                            <input id="login" type="text" name="login" class="form-control" value="${candidate.login}" disabled>
+                            <label for="login">Identifiant utilisateur *</label>
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+        <c:if test="${option == 'add'}">
+            <div class="row">
+                <div class="col-12 col-lg-8 offset-lg-2">
+                    <div class="md-form">
+                        <input id="password" type="password" name="password" class="form-control" value="">
+                        <label for="password">Mot de passe *</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-                <div class="md-form">
-                    <input id="password" type="password" name="password" class="form-control">
-                    <label for="password">Mot de passe *</label>
-                </div>
-            </div>
-        </div>
+        </c:if>
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
                     <label for="birthDate">Date de naissance *</label>
-                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="">
+                    <input id="birthDate" type="date" name="naissance" class="form-control" placeholder="" value="${candidate.birthDate}">
                 </div>
             </div>
         </div>
@@ -79,7 +97,14 @@
                         <option selected disabled>Sélectionnez un parti</option>
                         <jsp:useBean id="partyList" scope="request" type="java.util.List"/>
                         <c:forEach var="party" items="${partyList}">
-                            <option value="${party.getPartyName()}">${party.getPartyName()}</option>
+                            <c:choose>
+                                <c:when test="${party.getPartyName() == candidate.party.partyName}">
+                                    <option value="${party.getPartyName()}" selected>${party.getPartyName()}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${party.getPartyName()}">${party.getPartyName()}</option>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                     </select>
                 </div>

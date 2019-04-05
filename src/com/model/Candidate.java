@@ -27,6 +27,12 @@ public class Candidate extends Voter implements Serializable {
     }
 
     public void setParty(Party party) {
+        if (this.party != null) {
+            this.party.getCandidates().remove(this);
+            int nbCandidate = this.party.getNbCandidates();
+            nbCandidate--;
+            this.party.setNbCandidates(nbCandidate);
+        }
         this.party = party;
         this.party.addCandidate(this);
     }
