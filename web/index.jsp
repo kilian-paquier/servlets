@@ -19,6 +19,11 @@
 
 <body>
 <div class="container pt-5 mt-5 mb-5 pb-5 border border-light rounded">
+    <div class="row mb-3 mt-3">
+        <div class="col-12 col-lg-8 offset-lg-2 text-danger" id="error">
+            ${message}
+        </div>
+    </div>
     <div class="heading text-center pt-4">
         <h3 class="card-title">Liste des candidats</h3>
     </div>
@@ -36,9 +41,9 @@
                 <c:forEach var="candidate" items="${candidateList}">
                     <tr>
                         <td><c:out
-                                value="${candidate.getId()}">${candidate.getFirstName()} + " " + ${candidate.getLastName()}</c:out></td>
+                                value="${candidate.getFirstName()} ${candidate.getLastName()}"> ${candidate.getId()} </c:out></td>
                         <td><c:out
-                                value="${candidate.getParty().getPartyName()}">${candidate.getPart().getPartyName()}</c:out></td>
+                                value="${candidate.getParty().getPartyName()}">${candidate.getParty().getPartyName()}</c:out></td>
                     </tr>
                 </c:forEach>
                 </tbody>

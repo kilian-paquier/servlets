@@ -82,7 +82,7 @@
     </form>
     <div class="text-center mt-2 pb-3 animated fadeIn">
         <p>Déjà inscrit ?
-            <a href="login.jsp">Se connecter</a>
+            <a href="connexion">Se connecter</a>
         </p>
     </div>
 </div>
