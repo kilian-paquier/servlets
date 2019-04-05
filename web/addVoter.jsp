@@ -46,10 +46,11 @@
                 </div>
             </div>
         </div>
+        <c:if test="${information.equals('')}">
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="login" type="text" name="login" class="form-control" value="${voterAccount.login}">
+                    <input id="login" type="text" name="login" class="form-control" value="">
                     <label for="login">Identifiant utilisateur *</label>
                 </div>
             </div>
@@ -57,11 +58,12 @@
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="md-form">
-                    <input id="password" type="password" name="password" class="form-control" value="${voterAccount.password}">
+                    <input id="password" type="password" name="password" class="form-control" value="">
                     <label for="password">Mot de passe *</label>
                 </div>
             </div>
         </div>
+        </c:if>
         <div class="row mb-3 mt-3">
             <div class="col-12 col-lg-8 offset-lg-2">
                 <div class="">
