@@ -5,11 +5,14 @@
     </div>
 </footer>
 
-<script src="lib/material-design-4.7.1/js/jquery-3.3.1.min.js" type="text/javascript"></script>
-<script src="lib/material-design-4.7.1/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="lib/material-design-4.7.1/js/mdb.min.js" type="text/javascript"></script>
-<script src="lib/material-design-4.7.1/js/popper.min.js"></script>
-<script src="lib/material-design-4.7.1/js/modules/forms-free.js"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript"
